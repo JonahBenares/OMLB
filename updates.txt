@@ -1,0 +1,7 @@
+UPDATES:
+1. User can change password
+2. Update Employee Information
+3. Update Department Name
+4. Add Others in GN1 up to GN5
+5. Removed "Main Bearing Housing" since there is "MB Shell"
+6. New Format in choosing subsytem
