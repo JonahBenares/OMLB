@@ -12,7 +12,7 @@ $userid= $_SESSION['userid'];
     }
     $today=date("Y-m-d");
 
-     echo "SELECT * FROM log_head WHERE log_id = '$id'";
+
 ?>
 <link href="css/view_rec.css" rel="stylesheet">
 <script>
@@ -144,6 +144,7 @@ $userid= $_SESSION['userid'];
                 <div class="row">
                     <div class="col-lg-4 col-md-4  col-md-offset-4">
                         <center>
+                       
                             <a class="btn btn-info" href='<?php echo previousData($con,$_GET); ?>'>PREVIOUS</a> 
                             <a class="btn btn-primary" href='<?php echo nextData($con,$_GET); ?>'>NEXT</a>
                         </center>
@@ -153,8 +154,6 @@ $userid= $_SESSION['userid'];
 
                 
                 <?php 
-
-
                     $sql2 = mysqli_query($con,"SELECT * FROM log_head WHERE log_id = '$id'");
                     $row = mysqli_fetch_array($sql2);
                     $diff = dateDifference($row['due_date'],$today);

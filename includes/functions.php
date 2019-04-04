@@ -35,90 +35,94 @@ function getGenderCount($con,$dept,$column, $gender){
 }
 
 function filteredSQL($con, $post){
-	foreach($post as $var=>$value)
-		$$var = mysqli_real_escape_string($con,$value);
 
-	$logid=array();
-	$sql = "SELECT log_id FROM log_head WHERE ";
-	/*if(!empty($others)){
+	if(!empty($post)){
+		foreach($post as $var=>$value)
+			$$var = mysqli_real_escape_string($con,$value);
+
+		$logid=array();
+		$sql = "SELECT log_id FROM log_head WHERE ";
+		/*if(!empty($others)){
+		
+		$param=$others;
+		$searchHead=$con->query("SELECT log_id FROM log_head WHERE (notes LIKE '%$param%' OR performed_by LIKE '%$param%')");
+		$rows_head = $searchHead->num_rows;
+		if($rows_head != 0){
+			while($fetchHead = $searchHead->fetch_array()){
+				$logid[] = $fetchHead['log_id'];
+			}
+	 	}
+
+	 	$searchUpdate=$con->query("SELECT log_id FROM update_logs WHERE notes LIKE '%$param%' OR performed_by LIKE '%$param%'");
+
+		 	$rows_update = $searchUpdate->num_rows;
+		 	if($rows_update != 0){
+				while($fetchUpdate = $searchUpdate->fetch_array()){
+					$logid[] = $fetchUpdate['log_id'];
+				}
+		 	}
+
+
+		 }*/
+
+		 if(!empty($date_from)){
+		 	if(!empty($date_to)){
+		 		$sql.=" date_performed BETWEEN '$date_from' AND '$date_to' AND";
+				
+		 	} else {
+		 		$sql.=" date_performed BETWEEN '$date_from' AND '$date_from' AND";
+		 	}
+
+		 }
+
+		 if(!empty($due_from)){
+		 	if(!empty($due_to)){
+		 		$sql.=" due_date BETWEEN '$due_from' AND '$due_to' AND";
+				
+		 	} else {
+		 		$sql.=" due_date BETWEEN '$due_from' AND '$due_from' AND";
+		 	}
+
+		 }
+		 
+		 
+		 if(!empty($unit_name)){
+		 	$sql.=" unit = '$unit_name' AND";
+		 }
+
+		 if(!empty($system_name)){
+		 	$sql.=" main_system =  '$system_name' AND";
+			
+		 }
+
+		 if(!empty($subsys_name)){
+		 		$sql.=" sub_system =  '$subsys_name' AND";
+		 }
+
+		 if(!empty($status)){
+		 	$sql.=" status =  '$status' AND";
+			
+		 }
+
+		 if(!empty($others)){
+			$sql.=" (notes LIKE '%$others%' OR performed_by LIKE '%$others%') AND";
+
+			
+			$searchUpdate=$con->query("SELECT log_id FROM update_logs WHERE notes LIKE '%$others%' OR performed_by LIKE '%$others%'");
+
+		 	$rows_update = $searchUpdate->num_rows;
+		 	if($rows_update != 0){
+				while($fetchUpdate = $searchUpdate->fetch_array()){
+					$logid[] = $fetchUpdate['log_id'];
+				}
+		 	}
+		 }
+
+		$query=substr($sql,0,-3);
+	} else {
+		$query = "SELECT log_id FROM log_head ORDER BY log_id ASC";
+	}
 	
-	$param=$others;
-	$searchHead=$con->query("SELECT log_id FROM log_head WHERE (notes LIKE '%$param%' OR performed_by LIKE '%$param%')");
-	$rows_head = $searchHead->num_rows;
-	if($rows_head != 0){
-		while($fetchHead = $searchHead->fetch_array()){
-			$logid[] = $fetchHead['log_id'];
-		}
- 	}
-
- 	$searchUpdate=$con->query("SELECT log_id FROM update_logs WHERE notes LIKE '%$param%' OR performed_by LIKE '%$param%'");
-
-	 	$rows_update = $searchUpdate->num_rows;
-	 	if($rows_update != 0){
-			while($fetchUpdate = $searchUpdate->fetch_array()){
-				$logid[] = $fetchUpdate['log_id'];
-			}
-	 	}
-
-
-	 }*/
-
-	 if(!empty($date_from)){
-	 	if(!empty($date_to)){
-	 		$sql.=" date_performed BETWEEN '$date_from' AND '$date_to' AND";
-			
-	 	} else {
-	 		$sql.=" date_performed BETWEEN '$date_from' AND '$date_from' AND";
-	 	}
-
-	 }
-
-	 if(!empty($due_from)){
-	 	if(!empty($due_to)){
-	 		$sql.=" due_date BETWEEN '$due_from' AND '$due_to' AND";
-			
-	 	} else {
-	 		$sql.=" due_date BETWEEN '$due_from' AND '$due_from' AND";
-	 	}
-
-	 }
-	 
-	 
-	 if(!empty($unit_name)){
-	 	$sql.=" unit = '$unit_name' AND";
-	 }
-
-	 if(!empty($system_name)){
-	 	$sql.=" main_system =  '$system_name' AND";
-		
-	 }
-
-	 if(!empty($subsys_name)){
-	 		$sql.=" sub_system =  '$subsys_name' AND";
-	 }
-
-	 if(!empty($status)){
-	 	$sql.=" status =  '$status' AND";
-		
-	 }
-
-	 if(!empty($others)){
-		$sql.=" (notes LIKE '%$others%' OR performed_by LIKE '%$others%') AND";
-
-		
-		$searchUpdate=$con->query("SELECT log_id FROM update_logs WHERE notes LIKE '%$others%' OR performed_by LIKE '%$others%'");
-
-	 	$rows_update = $searchUpdate->num_rows;
-	 	if($rows_update != 0){
-			while($fetchUpdate = $searchUpdate->fetch_array()){
-				$logid[] = $fetchUpdate['log_id'];
-			}
-	 	}
-	 }
-
-	$query=substr($sql,0,-3);
-
-	//echo $query;
 
 	$searchHead=$con->query($query);
 	$rows_head = $searchHead->num_rows;
@@ -133,6 +137,7 @@ function filteredSQL($con, $post){
 
 function filtersApplied($con, $post){
 	
+
 	foreach($post as $var=>$value)
 		$$var = mysqli_real_escape_string($con,$value);
 
@@ -282,12 +287,14 @@ function printURL($con, $post){
 
 function nextData($con, $get){
 	$url='';
+
 	foreach($get AS $key=>$value){
 		if($key!='id'){
 			//echo $key;
 			$url[$key] = $value;
 		} else {
 			$id = $value;
+			$url = array();
 		}
 	}
 
@@ -303,17 +310,21 @@ function nextData($con, $get){
  
 function previousData($con, $get){
 	$url='';
+
 	foreach($get AS $key=>$value){
+		
 		if($key!='id'){
-			//echo $key;
+			
 			$url[$key] = $value;
 		} else {
 			$id = $value;
+			$url = array();
 		}
 	}
 
 
 	$arr = filteredSQL($con, $url);
+	
 
 	$index=array_search($id,$arr);
 	$previndex=$index-1;
