@@ -179,6 +179,54 @@ function filtersApplied($con, $post){
 	 return $fil;
 }
 
+function filterURL($con, $post){
+	
+	foreach($post as $var=>$value)
+		$$var = mysqli_real_escape_string($con,$value);
+
+	$filter='';
+
+	 if(!empty($date_from)){
+	 	if(!empty($date_to)){
+			$filter.='&date_from=' . $date_from . '&date_to='. $date_to;
+		 } else {
+	 		$filter.='&date_from=' . $date_from;
+	 	}
+	 }
+	 
+	  if(!empty($due_from)){
+	 	if(!empty($due_to)){
+			$filter.='&due_from=' . $due_from . '&due_to='. $due_to;
+		 } else {
+	 		$filter.='&due_from=' . $due_from;
+	 	}
+	 }
+	 
+	 if(!empty($unit_name)){
+	 	$filter.='&unit_name=' . $unit_name;
+	 }
+
+	 if(!empty($system_name)){
+	 	$filter.='&system_name=' . $system_name;
+	 }
+
+	 if(!empty($subsys_name)){
+	 		$filter.='&subsys_name=' . $subsys_name;
+	 }
+
+	 if(!empty($status)){
+
+	 	$filter.='&status=' . $status;
+	 }
+
+	 if(!empty($others)){
+	 	$filter.='&others=' . $others;
+	 }
+
+	// $fil = substr($filter, 0, -2);
+	 return $filter;
+}
+
 function printURL($con, $post){
 	foreach($post as $var=>$value)
 		$$var = mysqli_real_escape_string($con,$value);
@@ -187,32 +235,32 @@ function printURL($con, $post){
 
 	 if(!empty($date_from)){
 	 	if(!empty($date_to)){
-			$url.='datefrom='.$date_from.'&dateto='.$date_to.'&';
+			$url.='date_from='.$date_from.'&date_to='.$date_to.'&';
 		 } else {
-	 		$url.='datefrom='.$date_from.'&';
+	 		$url.='date_from='.$date_from.'&';
 	 	}
 	 }
 
 	  if(!empty($due_from)){
 	 	if(!empty($due_to)){
-			$url.='duefrom='.$due_from.'&dueto='.$due_to.'&';
+			$url.='due_from='.$due_from.'&due_to='.$due_to.'&';
 		 } else {
-	 		$url.='duefrom='.$due_from.'&';
+	 		$url.='due_from='.$due_from.'&';
 	 	}
 	 }
 	 
 	 
 	 
 	 if(!empty($unit_name)){
-	 	$url.='unit='.$unit_name.'&';
+	 	$url.='unit_name='.$unit_name.'&';
 	 }
 
 	 if(!empty($system_name)){
-	 	$url.='main_system='.$system_name.'&';
+	 	$url.='system_name='.$system_name.'&';
 	 }
 
 	 if(!empty($subsys_name)){
-	 	$url.='sub_system='.$subsys_name.'&';
+	 	$url.='subsys_name='.$subsys_name.'&';
 	 }
 
 	 if(!empty($status)){
@@ -231,6 +279,49 @@ function printURL($con, $post){
 	 return $url;
 
 }
+
+function nextData($con, $get){
+	$url='';
+	foreach($get AS $key=>$value){
+		if($key!='id'){
+			//echo $key;
+			$url[$key] = $value;
+		} else {
+			$id = $value;
+		}
+	}
+
+
+	$arr = filteredSQL($con, $url);
+
+	$index=array_search($id,$arr);
+	$nextindex=$index+1;
+	
+	$nexturl = "view_rec.php?id=".$arr[$nextindex]."&".printURL($con,$get);
+	echo $nexturl;
+}
+ 
+function previousData($con, $get){
+	$url='';
+	foreach($get AS $key=>$value){
+		if($key!='id'){
+			//echo $key;
+			$url[$key] = $value;
+		} else {
+			$id = $value;
+		}
+	}
+
+
+	$arr = filteredSQL($con, $url);
+
+	$index=array_search($id,$arr);
+	$previndex=$index-1;
+	$newurl = substr(printURL($con,$get), 0 , -1);
+	$prevurl = "view_rec.php?id=".$arr[$previndex]."&".$newurl;
+	echo $prevurl;
+}
+ 
 
 function dateDifference($date_1 , $date_2)
 {
@@ -268,5 +359,4 @@ function tasksThisWeek($con){
     return $count;
 
 }
-
 ?>
