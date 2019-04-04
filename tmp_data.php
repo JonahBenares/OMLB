@@ -19,6 +19,7 @@
         $sql1 = mysqli_query($con,"SELECT MAX(log_id) as logid FROM log_head");
         $row1 = mysqli_fetch_array($sql1);
         $max = $row1['logid'] + 1;
+        $unit=$rows['unit'];
 
         if($status=='Done') { 
             $date_finish = date('Y-m-d H:i:s');
@@ -43,7 +44,7 @@
         $deleteLH = $con->query("DELETE FROM tmp_log_head WHERE log_id = '$id' AND logged_by = '$userid'");
         $deleteAL = $con->query("DELETE FROM tmp_attachment_logs WHERE log_id = '$id'");
         echo '<script>alert("Successfully Saved!");</script>';
-       echo '<script>window.opener.location.href="home.php"; window.close();</script>';
+       echo '<script>window.opener.location.href="enternew.php?unit='.$unit.'"; window.close();</script>';
     }
 ?>
 <style type="text/css">

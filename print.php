@@ -266,13 +266,9 @@
 											$count = 1;
 							                $sql1 = mysqli_query($con,"SELECT * FROM log_head WHERE log_id = '$id'");
 							                while($row1 = mysqli_fetch_array($sql1)){
-							                	
-							                	$notes=str_replace("-", "<br>-", $row1['notes']);
-							                
-							                	
 							            ?>
 											<td><small><?php echo $count;?></small></td>
-											<td><small></small><?php echo $notes; ?></small></td>
+											<td><small><?php echo $row1['notes'];?></small></td>
 											<td><small><?php echo $row1['date_performed'];?></small></td>
 											<td><small><?php echo $row1['date_finish'];?></small></td>
 											<td><small></small></td>

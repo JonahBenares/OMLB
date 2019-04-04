@@ -21,8 +21,8 @@ if(empty($_SESSION)) echo "<script>alert('You are not logged in. Please login to
     <link href="css/css/font-awesome.min.css" rel="stylesheet">
     <link href="css/css/font-awesome.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
-    <link href="https://cdn.jsdelivr.net/gh/atatanasov/gijgo@1.7.3/dist/combined/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+<!--     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
+    <link href="https://cdn.jsdelivr.net/gh/atatanasov/gijgo@1.7.3/dist/combined/css/gijgo.min.css" rel="stylesheet" type="text/css" /> -->
     
 
     <script type="text/javascript" src="js/jquery.js"></script>       

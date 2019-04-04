@@ -28,10 +28,6 @@
 		  			<a href="home.php" class="btn btn-xs"><span class="fa fa-chevron-left"></span> BACK</a> //
 			  		<dtitle style="color:#b2c831" >View Records / Upate Records</dtitle>
 			  		<hr>
-			  		<div style="margin-left: 10px;margin-right: 10px">
-			  			<div class=" alert alert-success" style="padding:5px 10px 5px 10px">
-			  		<span  style="font-size:17px">Data/Files last 3 Months</span></div>
-			  	
 			  		
 			  	
 			  		<a href="javascript:void(0)" data-toggle="modal" data-target="#searchModal" class="btn btn-info btn-md btn-fill" style='float:left'>Search</a>	
@@ -47,8 +43,7 @@
 					?>
 					<a href='print-logs.php?<?php echo $param; ?>' target='_blank' class='btn btn-primary pull-right' style='margin-bottom:10px'>EXPORT</a>
 					<?php } ?>
-					<a href='view_records.php' class='btn btn-warning pull-right' style='margin-bottom:10px'>View Old Data</a>
-					</div>
+					<a href='view_records.php' class='btn btn-info pull-right' style='margin-bottom:10px'>View Old Data</a>
 					<div class='row' style='margin-bottom:20px'>
 						<div class="col-lg-12">
 				  		
@@ -79,6 +74,7 @@
 
 								if(!empty(filteredSQL($con,$_POST))){
 									$data=filteredSQL($con,$_POST);
+									$url=filterURL($con,$_POST);
 									foreach($data AS $id){
 				        		$sql = $con->query("SELECT * FROM log_head WHERE log_id = '$id'");
 			  					while($row = mysqli_fetch_array($sql)){
@@ -136,9 +132,9 @@
 					            <?php }?>
 					            <td>
 					            	<center>
-						            	<a href = "view_rec.php?id=<?php echo $row['log_id']; ?>" class="btn btn-success btn-xs" target='_blank'><span class="fa fa-eye" aria-hidden="true"></span> </a>
+						            	<a href = "view_rec.php?id=<?php echo $row['log_id'] . $url; ?>" class="btn btn-success btn-xs" target="_blank"><span class="fa fa-eye" aria-hidden="true"></span> </a>
 						            	
-						            	<a class="btn btn-primary btn-xs" href='update_rec.php?id=<?php echo $row['log_id']; ?>' target='_blank'><span class="fa fa-pencil-square-o" aria-hidden="true"></span> </a>
+						            	<a class="btn btn-primary btn-xs" href='update_rec.php?id=<?php echo $row['log_id']; ?>' target="_blank"><span class="fa fa-pencil-square-o" aria-hidden="true"></span> </a>
 						            	
 					            	</center>
 					            </td>
@@ -207,9 +203,9 @@
 					            <?php }?>
 					            <td>
 					            	<center>
-						            	<a href = "view_rec.php?id=<?php echo $row['log_id']; ?>" class="btn btn-success btn-xs" target='_blank'><span class="fa fa-eye" aria-hidden="true"></span> </a>
+						            	<a href = "view_rec.php?id=<?php echo $row['log_id']; ?>" class="btn btn-success btn-xs" ><span class="fa fa-eye" aria-hidden="true"></span> </a>
 						            	
-						            	<a class="btn btn-primary btn-xs" href='update_rec.php?id=<?php echo $row['log_id']; ?>' target='_blank'><span class="fa fa-pencil-square-o" aria-hidden="true"></span></a>
+						            	<a class="btn btn-primary btn-xs" href='update_rec.php?id=<?php echo $row['log_id']; ?>'><span class="fa fa-pencil-square-o" aria-hidden="true"></span></a>
 					            	</center>
 					            </td>
 							</tr>
@@ -351,7 +347,7 @@
 	             type: "post",
 	             url: "update_finish.php",
 	             success: function(output){
-	             window.location='view_latest.php';
+	             window.location='view_records.php';
 	         	  }
 	      	});
 		}

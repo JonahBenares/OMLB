@@ -29,10 +29,6 @@
 				  		<dtitle style="color:#b2c831" >View Records / Upate Records</dtitle>
 				  		<hr>
 				  		
-				  		<div style="margin-left: 10px;margin-right: 10px">
-				  			<div class=" alert alert-success" style="padding:5px 10px 5px 10px">
-				  		<span style="font-size:17px">Older Data/Files</span></div>
-			  	
 				  	
 				  		<a href="javascript:void(0)" data-toggle="modal" data-target="#searchModal" class="btn btn-info btn-md btn-fill" style='float:left'>Search</a>	
 							<?php 
@@ -46,9 +42,6 @@
 						 	}
 						?>
 						<a href='print-logs.php?<?php echo $param; ?>' target='_blank' class='btn btn-primary pull-right' style='margin-bottom:10px'>EXPORT</a>
-						<a href='view_latest.php' class='btn btn-warning pull-right' style='margin-bottom:10px'>View Recent</a>
-
-					</div>
 						<?php } ?>
 						<div class='row' style='margin-bottom:20px'>
 							<div class="col-lg-12">
@@ -139,9 +132,9 @@
 						            <?php }?>
 						            <td>
 						            	<center>
-							            	<a href = "view_rec.php?id=<?php echo $row['log_id']; ?>" class="btn btn-success btn-xs" target='_blank'><span class="fa fa-eye" aria-hidden="true"></span> </a>
+							            	<a href = "view_rec.php?id=<?php echo $row['log_id']; ?>" class="btn btn-success btn-xs" ><span class="fa fa-eye" aria-hidden="true"></span> </a>
 							            	
-							            	<a class="btn btn-primary btn-xs" href='update_rec.php?id=<?php echo $row['log_id']; ?>' target='_blank'><span class="fa fa-pencil-square-o" aria-hidden="true"></span> </a>
+							            	<a class="btn btn-primary btn-xs" href='update_rec.php?id=<?php echo $row['log_id']; ?>'><span class="fa fa-pencil-square-o" aria-hidden="true"></span> </a>
 							            	
 						            	</center>
 						            </td>
@@ -207,9 +200,9 @@
 						            <?php }?>
 						            <td>
 						            	<center>
-							            	<a href = "view_rec.php?id=<?php echo $row['log_id']; ?>" class="btn btn-success btn-xs" target='_blank'><span class="fa fa-eye" aria-hidden="true"></span> </a>
+							            	<a href = "view_rec.php?id=<?php echo $row['log_id']; ?>" class="btn btn-success btn-xs" ><span class="fa fa-eye" aria-hidden="true"></span> </a>
 							            	
-							            	<a class="btn btn-primary btn-xs" href='update_rec.php?id=<?php echo $row['log_id']; ?>' target='_blank'><span class="fa fa-pencil-square-o" aria-hidden="true"></span></a>
+							            	<a class="btn btn-primary btn-xs" href='update_rec.php?id=<?php echo $row['log_id']; ?>'><span class="fa fa-pencil-square-o" aria-hidden="true"></span></a>
 						            	</center>
 						            </td>
 								</tr>

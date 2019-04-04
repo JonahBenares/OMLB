@@ -1,1 +1,1 @@
-"C:\Users\Jonah\Dropbox\xampp\php\php.exe" -f "C:\Users\Jonah\Dropbox\xampp\htdocs\OMLB\backup.php"
+"C:\xampp\php\php.exe" -f "C:\xampp\htdocs\OMLB\backup.php"

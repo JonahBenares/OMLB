@@ -1,7 +1,7 @@
 <?php
 //include 'functions/functions.php';
 backup_tables('localhost','root','','db_omlb');
-
+$now=date('Y-m-d');
 
 $host='localhost';
 $user='root';
@@ -54,17 +54,14 @@ $return.="\n\n\n";
 
 
 $data=date("m_d_Y").'.sql';
-$handle = fopen('Back-up/db_backup/'.$data,'w+');
+$handle = fopen('C:\backup\db_backup\/'.$data,'w+');
 
 fwrite($handle,$return);
 
 
-$copysql='Back-up/db_backup/'.$data;
-rcopy($copysql , "C:\backup\db_backup\/".$data);
-
+$copysql='C:\backup\db_backup\/'.$data;
+rcopy($copysql , "C:\Users\User\OneDrive\BagoLogbook\dbbackup\/".$data);
 fclose($handle);
-
-
 }
 
 
@@ -99,7 +96,7 @@ $rootPath = realpath('uploads');
 
 // Initialize archive object
 $zip = new ZipArchive();
-$fname = 'Back-up/uploads/'.date('m_d_Y').'.zip';
+$fname = 'C:\backup\uploads\/'.date('m_d_Y').'.zip';
 $zip->open($fname, ZipArchive::CREATE | ZipArchive::OVERWRITE);
 
 // Create recursive directory iterator
@@ -111,16 +108,20 @@ $files = new RecursiveIteratorIterator(
 
 foreach ($files as $name => $file)
 {
-    // Skip directories (they would be added automatically)
-    if (!$file->isDir())
-    {
-        // Get real and relative path for current file
-        $filePath = $file->getRealPath();
-        $relativePath = substr($filePath, strlen($rootPath) + 1);
+    if ($file->isFile()) {
+		$filedate = date ("Y-m-d", filemtime($name));
+     	if($filedate==$now){
+		    if (!$file->isDir()){
+		        // Get real and relative path for current file
+		        $filePath = $file->getRealPath();
+		        $relativePath = substr($filePath, strlen($rootPath) + 1);
 
-        // Add current file to archive
-        $zip->addFile($filePath, $relativePath);
-    }
+		        // Add current file to archive
+		        $zip->addFile($filePath, $relativePath);
+		    }
+		}		
+	}
+
 }
 
 // Zip archive will be created only after closing object
@@ -128,7 +129,7 @@ $zip->close();
 
 //rcopy($fname , 'Back-up/uploads/'.$fname );
 $zipname=date('m_d_Y').'.zip';
-rcopy($fname , "C:\backup\uploads\/".$zipname);
+rcopy($fname , "C:\Users\User\/OneDrive\BagoLogbook\uploads\/".$zipname);
 
 
 //rrmdir($fname);

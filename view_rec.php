@@ -126,17 +126,28 @@ $userid= $_SESSION['userid'];
 </script>
 <body onload="startTime()">
 <?php include 'navbar.php';?>
-<div id="loader">
+<!-- <div id="loader">
     <figure class="one"></figure>
     <figure class="two">loading</figure>
-</div>
-<div id="contents" style="display: none">
+</div> -->
+<div >
     <div class="container"> 
-      	<div class="row">
-            <div class="col-lg-12 dash-unit">            
+      	<div class="row">           
+            <div class="col-lg-12 dash-unit" >            
                 <a class="btn btn-xs" href = "view_latest.php"><span class="fa fa-chevron-left"></span> BACK</a><!--  // -->
                 <dtitle style="color:#b2c831"></dtitle>
                 <hr>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4  col-md-offset-4">
+                        <center>
+                            <a class="btn btn-info" href='<?php echo previousData($con,$_GET); ?>'>PREVIOUS</a> 
+                            <a class="btn btn-primary" href='<?php echo nextData($con,$_GET); ?>'>NEXT</a>
+                        </center>
+                    </div>
+                </div>
+                <br>
+
+                
                 <?php 
                     $sql2 = mysqli_query($con,"SELECT * FROM log_head WHERE log_id = '$id'");
                     $row = mysqli_fetch_array($sql2);
@@ -434,6 +445,7 @@ $userid= $_SESSION['userid'];
                 </div>
                 <?php $count++; } } ?>
             <input type='hidden' name='count' id='count' value='<?php echo $count; ?>'>
+
         </div>
     </div> 
 </div>

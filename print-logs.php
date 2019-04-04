@@ -27,9 +27,9 @@ if(!empty($_GET)){
 	if(!empty($_GET['unit'])){
 		$sql .= " unit =  '$_GET[unit]' AND";
 	}
-	if(!empty($_GET['main_system'])){
-		$sql .= " main_system =  '$_GET[main_system]' AND";
-		$url.="main_system=".$_GET['main_system'];
+	if(!empty($_GET['system_name'])){
+		$sql .= " main_system =  '$_GET[system_name]' AND";
+		//$url.="system_name=".$_GET['system_name'];
 	}
 	if(!empty($_GET['sub_system'])){
 		$sql .= " sub_system =  '$_GET[sub_system]' AND";
