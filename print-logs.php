@@ -6,11 +6,11 @@ $sql="SELECT * FROM log_head";
 
 if(!empty($_GET)){
 	$sql .= " WHERE"; 
-	if(!empty($_GET['datefrom'])){
-		if(!empty($_GET['dateto'])){
-			$sql .= " date_performed BETWEEN '$_GET[datefrom]' AND '$_GET[dateto]' AND";
+	if(!empty($_GET['date_from'])){
+		if(!empty($_GET['date_to'])){
+			$sql .= " date_performed BETWEEN '$_GET[date_from]' AND '$_GET[date_to]' AND";
 		}else{
-			$sql .= " date_performed BETWEEN '$_GET[datefrom]' AND '$_GET[datefrom]' AND";
+			$sql .= " date_performed BETWEEN '$_GET[date_from]' AND '$_GET[date_from]' AND";
 			
 		}
 	}
@@ -43,6 +43,8 @@ if(!empty($_GET)){
 $q = substr($sql,-3);
 if($q == 'AND'){
 	$sql = substr($sql,0,-3);
+} else {
+	$sql = substr($sql,0,-5);
 }
 
 
@@ -125,4 +127,5 @@ ob_end_clean();
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 header('Content-Disposition: attachment; filename="logbook.xlsx"');
 readfile($exportfilename);
+
 ?>
