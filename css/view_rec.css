@@ -4,10 +4,10 @@ input{
     table tbody tr td {
 
         font-family: Tahoma, Verdana, Segoe, sans-serif;
-        padding: 5px;
+        padding: 2px;
         background-color: #3d3d3d00!important;
         border: 0px solid #47474738!important; 
-        border-bottom: 1px solid #47474738!important;
+        /*border-bottom: 1px solid #47474738!important;*/
     }
     .latest{
         color: #ffffff;
@@ -16,6 +16,10 @@ input{
         border-radius: 25px;
         border: 2px solid #ffffff;
 
+    }
+    hr.hr{
+        border-top: 1px solid #ffffff;
+        margin: 5px;
     }
     .latest:hover{
         /*color:black ;

@@ -99,7 +99,7 @@
                                 </td>
                             </tr>
                             <tr>                                
-                                <td width='30%' >
+                                <td width='35%' >
                                     Status: 
                                 </td>
                                 <td >
@@ -108,7 +108,6 @@
                                 <td rowspan="5"></td>
                             </tr>
                             <tr>
-                                
                                 <td>
                                     Date/Time Performed:  
                                 </td>
@@ -116,7 +115,47 @@
                                     <?php echo $rowi['date_performed'] . ' ' . $rowi['time_performed']; ?> 
                                 </td>
                             </tr>
-                           
+                            <tr>
+                                <td>
+                                    Equipment Type/Model:  
+                                </td>
+                                <td>
+                                    sample 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Problem/Findings:  
+                                </td>
+                                <td>
+                                    sample
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Work Description:  
+                                </td>
+                                <td>
+                                    sample
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Action Taken:  
+                                </td>
+                                <td>
+                                    sample
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Parts Replaced: 
+                                </td>
+                                <td>
+                                    sample
+                                </td>
+                            </tr>
                             <tr>
                                 <td>
                                     Due Date: 

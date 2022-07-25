@@ -159,61 +159,68 @@ $userid= $_SESSION['userid'];
                     $diff = dateDifference($row['due_date'],$today);
                 ?>
                 <div class="shadow latest">
-                    <table width="100%"  style="text-align: left;">
+                    <table width="100%" class="table-bosrdered"  style="text-align: left;">
                         <?php if ($row['status'] == 'Done') { ?>
-                        <tr>                        
-                            <td width="15%">
-                               <label style="font-size:15px">Status:&nbsp</label>
-                              
-                            </td>
-                            <td width="37%">
-                                <label class="label label-success" style="font-size:15px;font-weight:900!important;"><?php echo $row['status'] ?></label>
-                            </td>
-                            <td width="50%"><a href='update_rec.php?id=<?php echo $id; ?>' class='btn btn-info pull-right'>Update</a></td>
-                            <td><button onClick="print(<?php echo $row['log_id']; ?>)" class="btn btn-danger btn-fill" style="width:80px;">Print</button></td>           
-                        </tr>
-                        <tr>                        
-                            <td width="13%">
-                               <label style="font-size:15px">Date Finished:&nbsp</label>  
-                            </td>
-                            <td width="37%">
-                                <label style="font-size:15px;font-weight:900!important"><?php echo $row['date_finish'] ?></label>
-                            </td>
-                            <td width="50%"><label style="font-size:15px">Notes:</label></td>                     
-                        </tr>
-                         <tr>                        
-                            <td width="13%">
-                               <label style="font-size:15px">Done By:&nbsp</label>  
-                            </td>
-                            <td width="37%">
-                                <label style="font-size:15px;font-weight:900!important"><?php echo getInfo($con, "fullname", "users", "user_id", $row['finished_by']); ?></label>
-                            </td>                
-                        </tr>
+                            <tr>                        
+                                <td width="15%">
+                                   <label style="font-size:15px">Status:</label>
+                                </td>
+                                <td width="35%">
+                                    <label class="label label-success" style="font-size:15px;font-weight:900!important;"><?php echo $row['status'] ?></label>
+                                </td>
+                                <td width='15%'></td>
+                                <td width="35%">
+                                    <div class="pull-right">
+                                        <a href='update_rec.php?id=<?php echo $id; ?>' class='btn btn-info '>Update</a>
+                                        <button onClick="print(<?php echo $row['log_id']; ?>)" class="btn btn-danger btn-fill" style="width:80px;">Print</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr> 
+                                <td width="13%">
+                                   <label style="font-size:15px">Done By:</label>  
+                                </td>
+                                <td width="35%">
+                                    <label style="font-size:15px;font-weight:900!important"><?php echo getInfo($con, "fullname", "users", "user_id", $row['finished_by']); ?></label>
+                                </td>                         
+                                <td width="13%">
+                                   <label style="font-size:15px">Date Finished:</label>  
+                                </td>
+                                <td width="35%">
+                                    <label style="font-size:15px;font-weight:900!important"><?php echo $row['date_finish'] ?></label>
+                                </td>         
+                            </tr>
+                            <tr>
+                                <td colspan="4"><hr class="hr"></td>
+                            </tr>
                         <?php } else { ?>
-
-                        <tr>
-                            <td width='15%'><label style="font-size:15px">Status:&nbsp</label>
-                            </td>
-                            <td><label class="label label-warning" style="font-size:15px;font-weight:900!important;color:black;"><?php echo $row['status'] ?></label></td>
-                            <td> <a href='update_rec.php?id=<?php echo $id; ?>' class='btn btn-info pull-right'>Update</a></td> 
-                            <td><button onClick="print(<?php echo $row['log_id']; ?>)" class="btn btn-danger btn-fill" style="width:80px;">Print</button></td>
-                        </tr>
-                        <tr>                        
-                            <td></td>
-                            <td></td>
-                            <td width='50%'><label style="font-size:15px">Notes:</label></td>                     
-                        </tr>
+                            <tr>
+                                <td width='15%'><label style="font-size:15px">Status:</label>
+                                </td>
+                                <td width="35%"><label class="label label-warning" style="font-size:15px;font-weight:900!important;color:black;"><?php echo $row['status'] ?></label></td>
+                                <td width='15%'></td>
+                                <td width="35%">
+                                    <div class="pull-right">
+                                        <a href='update_rec.php?id=<?php echo $id; ?>' class='btn btn-info '>Update</a>
+                                        <button onClick="print(<?php echo $row['log_id']; ?>)" class="btn btn-danger btn-fill" style="width:80px;">Print</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"><hr class="hr"></td>
+                            </tr>
                         <?php } ?>
                         <tr >
-                            <td><label style="font-size:15px">Date/Time Performed:&nbsp</label></td>
+                            <td><label style="font-size:15px">Unit:</label></td>
+                            <td><label style="font-size:15px;font-weight:900!important"><?php echo getInfo($con, "unit_name", "unit", "unit_id", $row['unit']); ?></label></td>
+                            <td><label style="font-size:15px">Date/Time Performed:</label></td>
                             <td><label style="font-size:15px;font-weight:900!important"><?php echo $row['date_performed'].' '.$row['time_performed']?></label></td>
-                            <td rowspan="8" style="padding-top:0px!important">
-                                <label style="font-size:15px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row['notes']); ?></label>
-                            </td> 
                         </tr>
                         <tr>
+                            <td><label style="font-size:15px">Main Category:</label></td>
+                            <td><label style="font-size:15px;font-weight:900!important"><?php echo getInfo($con, "system_name", "main_system", "main_id", $row['main_system']); ?></label></td>
                         	<td>
-                        		<label style="font-size:15px">Due Date:&nbsp</label>
+                        		<label style="font-size:15px">Due Date:</label>
                         	</td>
                         	<td>
                         		<label style="font-size:15px;font-weight:900!important"><?php echo $row['due_date']?> <i style = "font-weight:100; font-size:13px;">(Days Left: 
@@ -223,33 +230,45 @@ $userid= $_SESSION['userid'];
     		             				else echo "<span style='color:#78dc52; font-weight:bold'>".$diff."</span>";
     			             		}
     			             	?>)</i>
-                        	</label></td>
+                            	</label>
+                            </td>
                         </tr>
                         <tr>
-                            <td><label style="font-size:15px">Performed By:&nbsp</label></td>
+                            <td><label style="font-size:15px">Sub System:</label> </td>
+                            <td><label style="font-size:15px;font-weight:900!important"><?php echo getInfo($con, "subsys_name", "sub_system", "sub_id", $row['sub_system']); ?></label></td>
+                            <td><label style="font-size:15px">Performed By:</label></td>
                             <td><label style="font-size:15px;font-weight:900!important"><?php echo $row['performed_by'] ?></label></td>
                         </tr>
                         <tr>
-                            <td><label style="font-size:15px">Unit:&nbsp</label></td>
-                            <td><label style="font-size:15px;font-weight:900!important"><?php echo getInfo($con, "unit_name", "unit", "unit_id", $row['unit']); ?></label></td>
-                        </tr>
-                        <tr>
-                            <td><label style="font-size:15px">Main Category:&nbsp</label></td>
-                            <td><label style="font-size:15px;font-weight:900!important"><?php echo getInfo($con, "system_name", "main_system", "main_id", $row['main_system']); ?></label></td>
-                        </tr>
-                        <tr>
-                            <td><label style="font-size:15px">Sub System:&nbsp</label> </td>
-                            <td><label style="font-size:15px;font-weight:900!important"><?php echo getInfo($con, "subsys_name", "sub_system", "sub_id", $row['sub_system']); ?></label></td>
-                        </tr>
-                        <tr>
+                            <td><label style="font-size:15px">Equipment Type/Model:</label></td>
+                            <td><label style="font-size:15px;font-weight:900!important">Sample</label></td>
                             <td><label style="font-size:15px">Logged by/Date&Time:</label> </td>
                             <td><label style="font-size:15px;font-weight:900!important"><?php echo getInfo($con, "fullname", "users", "user_id", $row['logged_by']) . " / " . $row['logged_date']; ?> </label></td>
                         </tr>
                         <tr>
-                            <td colspan="3"><label style="font-size:15px">Attachments:&nbsp</label></td>
+                            <td style="vertical-align: text-top;"><label style="font-size:15px">Problem/Findings:</label></td>
+                            <td></td>
+                            <td style="vertical-align: text-top;"><label style="font-size:15px">Work Description:</label></td>
+                            <td></td>
                         </tr>
                         <tr>
-                            <td colspan="3">
+                            <td style="vertical-align: text-top;"><label style="font-size:15px">Action Taken:</label></td>
+                            <td></td>
+                            <td style="vertical-align: text-top;"><label style="font-size:15px">Parts Replaced:</label></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><hr class="hr"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" ><label style="font-size:15px">Notes:</label></td>
+                            <td colspan="2"><label style="font-size:15px">Attachments:</label></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"  style="padding-top:0px!important">
+                                <label style="font-size:15px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row['notes']); ?></label>
+                            </td> 
+                            <td colspan="2">
                                 <?php 
                                     $c=1;
                                     $sql = mysqli_query($con,"SELECT * FROM attachment_logs WHERE log_id = '$id'");
@@ -311,6 +330,7 @@ $userid= $_SESSION['userid'];
                                     </div>
                                 </div>
                             </td>
+
                         </tr>
                     </table>
                 </div>
@@ -337,26 +357,26 @@ $userid= $_SESSION['userid'];
                         <tr>
                         
                             <td>
-                                <label style="font-size:15px">Status:&nbsp</label> 
+                                <label style="font-size:15px">Status:</label> 
                                 <label class="<?php echo (($row4[status] == 'Done') ? 'label label-success' :'label label-warning'); ?>" style="font-size:15px;font-weight:900!important"><?php echo $row4['status'] ?></label>  
                             </td>
                         </tr>
                             <?php if ($row4['status'] == 'Done') { ?>
                         <tr>
                             <td>
-                                <label style="font-size:15px">Date Finished:&nbsp</label> 
+                                <label style="font-size:15px">Date Finished:</label> 
                                 <label style="font-size:15px;font-weight:900!important"><?php echo $row4['date_finish'] ?></label>
                             </td>
-                            <td style='width:50%'><label style="font-size:14px">Notes:&nbsp</label></td>
+                            <td style='width:50%'><label style="font-size:14px">Notes:</label></td>
                         </tr>
                         <?php } ?>
                         <tr>                        
                             <td>
-                                <label style="font-size:14px">Date/Time Performed:&nbsp</label> 
+                                <label style="font-size:14px">Date/Time Performed:</label> 
                                 <label style="font-size:15px;font-weight:900!important"><?php echo $row4['date_performed'].' '.$row4['time_performed']?></label>
                             </td>  
                              <?php if ($row4['status'] == 'On-Progress') { ?>
-                             <td style='width:50%'><label style="font-size:14px">Notes:&nbsp</label></td>
+                             <td style='width:50%'><label style="font-size:14px">Notes:</label></td>
                              <?php } ?>
                              <?php if ($row4['status'] == 'Done') { ?>
                              <td rowspan='4' style='width:50%'><label style="font-size:14px"><?php echo str_replace("-","<br>-",$row4['notes']); ?></label></td>
@@ -365,7 +385,7 @@ $userid= $_SESSION['userid'];
                         </tr>
                         <tr>
                             <td >
-                                <label style="font-size:14px">Performed By:&nbsp</label> 
+                                <label style="font-size:14px">Performed By:</label> 
                                 <label style="font-size:15px;font-weight:900!important"><?php echo $row4['performed_by'] ?></label>
                             </td>
                              <?php if ($row4['status'] == 'On-Progress') { ?>
