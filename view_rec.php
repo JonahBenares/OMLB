@@ -241,21 +241,21 @@ $userid= $_SESSION['userid'];
                         </tr>
                         <tr>
                             <td><label style="font-size:15px">Equipment Type/Model:</label></td>
-                            <td><label style="font-size:15px;font-weight:900!important">Sample</label></td>
+                            <td><label style="font-size:15px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row['equip_type_model']); ?></label></td>
                             <td><label style="font-size:15px">Logged by/Date&Time:</label> </td>
                             <td><label style="font-size:15px;font-weight:900!important"><?php echo getInfo($con, "fullname", "users", "user_id", $row['logged_by']) . " / " . $row['logged_date']; ?> </label></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: text-top;"><label style="font-size:15px">Problem/Findings:</label></td>
-                            <td></td>
+                            <td><label style="font-size:15px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row['prob_find']); ?></label></td>
                             <td style="vertical-align: text-top;"><label style="font-size:15px">Work Description:</label></td>
-                            <td></td>
+                            <td><label style="font-size:15px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row['work_desc']); ?></label></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: text-top;"><label style="font-size:15px">Action Taken:</label></td>
-                            <td></td>
+                            <td><label style="font-size:15px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row['act_taken']); ?></label></td>
                             <td style="vertical-align: text-top;"><label style="font-size:15px">Parts Replaced:</label></td>
-                            <td></td>
+                            <td><label style="font-size:15px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row['parts_replaced']); ?></label></td>
                         </tr>
                         <tr>
                             <td colspan="4"><hr class="hr"></td>

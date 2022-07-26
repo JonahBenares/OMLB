@@ -18,7 +18,7 @@ $userid = $_SESSION['userid'];
 	if($rows == 1){
 		mysqli_query($con,"UPDATE log_head SET status = '$status' WHERE log_id = '$id'");
 		$time_performed = $hour.':'.$minutes;
-		mysqli_query($con,"INSERT INTO update_logs (log_id,date_performed,time_performed,notes,performed_by,status,logged_by,logged_date,date_finish) VALUES ('$id','$date_performed','$time_performed','$notes','$performed_by','$status','$userid',NOW(),NOW())");
+		mysqli_query($con,"INSERT INTO update_logs (log_id,date_performed,time_performed,notes,equip_type_model,prob_find,work_desc,act_taken,parts_replaced,performed_by,status,logged_by,logged_date,date_finish) VALUES ('$id','$date_performed','$time_performed','$notes','$equip_type_model','$prob_find','$work_desc','$act_taken','$parts_replaced','$performed_by','$status','$userid',NOW(),NOW())");
 	}	
 
 	$sql = mysqli_query($con,"SELECT * FROM update_logs ORDER BY update_id DESC");

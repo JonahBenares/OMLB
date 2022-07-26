@@ -31,7 +31,7 @@
 
         if($rows_count != 0){
             $notes=mysqli_real_escape_string($con,$rows['notes']);
-            $insert = mysqli_query($con,"INSERT INTO log_head (log_id,date_performed,time_performed,unit,main_system,sub_system,notes,performed_by,status,logged_by,due_date,logged_date,date_finish, finished_by) VALUES ('$max','$rows[date_performed]','$rows[time_performed]','$rows[unit]','$rows[main_system]','$rows[sub_system]','$notes','$rows[performed_by]','$rows[status]','$rows[logged_by]','$rows[due_date]','$rows[logged_date]', '$rows[date_finish]', '$fin')");
+            $insert = mysqli_query($con,"INSERT INTO log_head (log_id,date_performed,time_performed,unit,main_system,sub_system,notes,equip_type_model,prob_find,work_desc,act_taken,parts_replaced,performed_by,status,logged_by,due_date,logged_date,date_finish, finished_by) VALUES ('$max','$rows[date_performed]','$rows[time_performed]','$rows[unit]','$rows[main_system]','$rows[sub_system]','$notes','$equip_type_model','$prob_find','$work_desc','$act_taken','$parts_replaced','$rows[performed_by]','$rows[status]','$rows[logged_by]','$rows[due_date]','$rows[logged_date]', '$rows[date_finish]', '$fin')");
          
         }
 
@@ -120,7 +120,7 @@
                                     Equipment Type/Model:  
                                 </td>
                                 <td>
-                                    sample 
+                                    <?php echo $rowi['equip_type_model']; ?>
                                 </td>
                             </tr>
                             <tr>
@@ -128,7 +128,7 @@
                                     Problem/Findings:  
                                 </td>
                                 <td>
-                                    sample
+                                    <?php echo $rowi['prob_find']; ?>
                                 </td>
                             </tr>
                             <tr>
@@ -136,7 +136,7 @@
                                     Work Description:  
                                 </td>
                                 <td>
-                                    sample
+                                    <?php echo $rowi['work_desc']; ?>
                                 </td>
                             </tr>
 
@@ -145,7 +145,7 @@
                                     Action Taken:  
                                 </td>
                                 <td>
-                                    sample
+                                    <?php echo $rowi['act_taken']; ?>
                                 </td>
                             </tr>
                             <tr>
@@ -153,7 +153,7 @@
                                     Parts Replaced: 
                                 </td>
                                 <td>
-                                    sample
+                                    <?php echo $rowi['parts_replaced']; ?>
                                 </td>
                             </tr>
                             <tr>
@@ -231,6 +231,11 @@
                         <input type = "hidden" name = "time_performed" value = "<?php echo $rowi['time_performed'];?>">
                         <input type = "hidden" name = "due_date" value = "<?php echo $rowi['due_date'];?>">
                         <input type = "hidden" name = "notes" value = "<?php echo $rowi['notes'];?>">
+                        <input type = "hidden" name = "equip_type_model" value = "<?php echo $rowi['equip_type_model'];?>">
+                        <input type = "hidden" name = "prob_find" value = "<?php echo $rowi['prob_find'];?>">
+                        <input type = "hidden" name = "work_desc" value = "<?php echo $rowi['work_desc'];?>">
+                        <input type = "hidden" name = "act_taken" value = "<?php echo $rowi['act_taken'];?>">
+                        <input type = "hidden" name = "parts_replaced" value = "<?php echo $rowi['parts_replaced'];?>">
                         <input type = "hidden" name = "performed_by" value = "<?php echo $rowi['performed_by'];?>">
                         <input type = "hidden" name = "status" value = "<?php echo $rowi['status'];?>">
                     </form>

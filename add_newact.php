@@ -138,6 +138,16 @@
             frm.append('due_date', due_date);
             var notes =document.getElementById('notes').value;
             frm.append('notes', notes);
+            var equip_type_model =document.getElementById('equip_type_model').value;
+            frm.append('equip_type_model', equip_type_model);
+            var prob_find =document.getElementById('prob_find').value;
+            frm.append('prob_find', prob_find);
+            var work_desc =document.getElementById('work_desc').value;
+            frm.append('work_desc', work_desc);
+            var act_taken =document.getElementById('act_taken').value;
+            frm.append('act_taken', act_taken);
+            var parts_replaced =document.getElementById('parts_replaced').value;
+            frm.append('parts_replaced', parts_replaced);
             var performed_by =document.getElementById('performed_by').value;
             frm.append('performed_by', performed_by);
             var status =document.getElementById('status').value;
@@ -288,34 +298,69 @@
                                     <?php } ?>
                                 </tr>
                                 <tr>
-                                    <th>Equipment Type/Model:</th >
-                                    <td colspan="4">
-                                        <input type="text" id="" name="" class="form-control"  style='width:450px;margin: 0px;' >
-                                    </td>
+                                <?php if(!empty($row['equip_type_model'])){ ?>
+                                <th>Equipment Type/Model:</th >
+                                <td colspan="4">
+                                    <input type="text" id="equip_type_model" name="equip_type_model" class="form-control"  value = "<?php echo $equip_type_model; ?>" style='width:450px;margin: 0px;' >
+                                </td>
+                                <?php } else { ?>
+                                <th>Equipment Type/Model:</th >
+                                <td colspan="4">
+                                    <input type="text" id="equip_type_model" name="equip_type_model" class="form-control"  style='width:450px;margin: 0px;' >
+                                </td>
+                                <?php } ?>
                                 </tr>
                                 <tr>
+                                <?php if(!empty($row['prob_find'])){ ?>
                                     <th style="vertical-align: text-top;">Problem/Findings:</th >
                                     <td colspan="4">
-                                        <textarea rows='2' class = "form-control" id = ""  name = "" style='resize:none;margin: 0px;'></textarea>
+                                        <textarea rows='2' class = "form-control" id = "prob_find"  name = "prob_find" style='resize:none;margin: 0px;'><?php echo $row['prob_find']; ?></textarea>
                                     </td>
+                                <?php } else { ?>
+                                    <th style="vertical-align: text-top;">Problem/Findings:</th >
+                                    <td colspan="4">
+                                        <textarea rows='2' class = "form-control" id = "prob_find"  name = "prob_find" style='resize:none;margin: 0px;'></textarea>
+                                    </td>
+                                <?php } ?>
                                 </tr>
                                 <tr>
+                                <?php if(!empty($row['work_desc'])){ ?>
                                     <th style="vertical-align: text-top;">Work Description:</th >
                                     <td colspan="4">
-                                        <textarea rows='2' class = "form-control" id = "notes"  name = "notes" style='resize:none;margin: 0px;'></textarea>
+                                        <textarea rows='2' class = "form-control" id = "work_desc"  name = "work_desc" style='resize:none;margin: 0px;'><?php echo $row['work_desc']; ?></textarea>
                                     </td>
+                                <?php } else { ?>
+                                    <th style="vertical-align: text-top;">Work Description:</th >
+                                    <td colspan="4">
+                                        <textarea rows='2' class = "form-control" id = "work_desc"  name = "work_desc" style='resize:none;margin: 0px;'></textarea>
+                                    </td>
+                                <?php } ?>
                                 </tr>
                                 <tr>
+                                <?php if(!empty($row['act_taken'])){ ?>
                                     <th style="vertical-align: text-top;">Action Taken:</th >
                                     <td colspan="4">
-                                        <textarea rows='2' class = "form-control" id = "notes"  name = "notes" style='resize:none;margin: 0px;'></textarea>
+                                        <textarea rows='2' class = "form-control" id = "act_taken"  name = "act_taken" style='resize:none;margin: 0px;'><?php echo $row['act_taken']; ?></textarea>
                                     </td>
+                                <?php } else { ?>
+                                    <th style="vertical-align: text-top;">Action Taken:</th >
+                                    <td colspan="4">
+                                        <textarea rows='2' class = "form-control" id = "act_taken"  name = "act_taken" style='resize:none;margin: 0px;'></textarea>
+                                    </td>
+                                <?php } ?> 
                                 </tr>
                                 <tr>
+                                <?php if(!empty($row['parts_replaced'])){ ?>
                                     <th style="vertical-align: text-top;">Parts Replaced:</th >
                                     <td colspan="4">
-                                        <textarea rows='2' class = "form-control" id = "notes"  name = "notes" style='resize:none;margin: 0px;'></textarea>
+                                        <textarea rows='2' class = "form-control" id = "parts_replaced"  name = "parts_replaced" style='resize:none;margin: 0px;'><?php echo $row['parts_replaced']; ?></textarea>
                                     </td>
+                                <?php } else { ?>
+                                    <th style="vertical-align: text-top;">Parts Replaced:</th >
+                                    <td colspan="4">
+                                        <textarea rows='2' class = "form-control" id = "parts_replaced"  name = "parts_replaced" style='resize:none;margin: 0px;'></textarea>
+                                    </td>
+                                <?php } ?>
                                 </tr>
                                 <tr>
                                     <?php if(!empty($row['due_date'])){ ?>

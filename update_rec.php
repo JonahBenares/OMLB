@@ -97,6 +97,16 @@ $userid= $_SESSION['userid'];
             frm.append('minutes', minutes);
             var notes =document.getElementById('notes').value;
             frm.append('notes', notes);
+            var equip_type_model =document.getElementById('equip_type_model').value;
+            frm.append('equip_type_model', equip_type_model);
+            var prob_find =document.getElementById('prob_find').value;
+            frm.append('prob_find', prob_find);
+            var work_desc =document.getElementById('work_desc').value;
+            frm.append('work_desc', work_desc);
+            var act_taken =document.getElementById('act_taken').value;
+            frm.append('act_taken', act_taken);
+            var parts_replaced =document.getElementById('parts_replaced').value;
+            frm.append('parts_replaced', parts_replaced);
             var performed_by =document.getElementById('performed_by').value;
             frm.append('performed_by', performed_by);
             var status =document.getElementById('status').value;
@@ -178,23 +188,23 @@ $userid= $_SESSION['userid'];
                             </tr>
                             <tr>
                                 <td >Equipment Type/Model: </td>
-                                <td colspan="4"><textarea rows='1' class = "form-control" id = "notes" name = "notes" style='resize:none;margin: 0;'></textarea></td>
+                                <td colspan="4"><textarea rows='1' class = "form-control" id = "equip_type_model" name = "equip_type_model" style='resize:none;margin: 0;'></textarea></td>
                             </tr>
                             <tr>
                                 <td >Problem/ Findings: </td>
-                                <td colspan="4"><textarea rows='2' class = "form-control" id = "notes" name = "notes" style='resize:none;margin: 0;'></textarea></td>
+                                <td colspan="4"><textarea rows='2' class = "form-control" id = "prob_find" name = "prob_find" style='resize:none;margin: 0;'></textarea></td>
                             </tr>
                             <tr>
                                 <td >Work Description: </td>
-                                <td colspan="4"><textarea rows='2' class = "form-control" id = "notes" name = "notes" style='resize:none;margin: 0;'></textarea></td>
+                                <td colspan="4"><textarea rows='2' class = "form-control" id = "work_desc" name = "work_desc" style='resize:none;margin: 0;'></textarea></td>
                             </tr>
                             <tr>
                                 <td >Action Taken: </td>
-                                <td colspan="4"><textarea rows='2' class = "form-control" id = "notes" name = "notes" style='resize:none;margin: 0;'></textarea></td>
+                                <td colspan="4"><textarea rows='2' class = "form-control" id = "act_taken" name = "act_taken" style='resize:none;margin: 0;'></textarea></td>
                             </tr>
                             <tr>
                                 <td >Parts Replaced: </td>
-                                <td colspan="4"><textarea rows='2' class = "form-control" id = "notes" name = "notes" style='resize:none;margin: 0;'></textarea></td>
+                                <td colspan="4"><textarea rows='2' class = "form-control" id = "parts_replaced" name = "parts_replaced" style='resize:none;margin: 0;'></textarea></td>
                             </tr>
                             <tr>
                                 <td >Notes: </td>
@@ -317,23 +327,23 @@ $userid= $_SESSION['userid'];
                         </tr>
                         <tr>
                             <td><label style="font-size:12px">Equipment Type/Model:</label></td>
-                            <td><label style="font-size:12px;font-weight:900!important"> Sample </td>
+                            <td><label style="font-size:12px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row['equip_type_model']); ?></td>
                         </tr>
                         <tr>
                             <td><label style="font-size:12px">Problem/ Findings:</label></td>
-                            <td><label style="font-size:12px;font-weight:900!important"> Sample </td>
+                            <td><label style="font-size:12px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row['prob_find']); ?></td>
                         </tr>
                         <tr>
                             <td><label style="font-size:12px">Work Description:</label></td>
-                            <td><label style="font-size:12px;font-weight:900!important"> Sample </td>
+                            <td><label style="font-size:12px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row['work_desc']); ?></td>
                         </tr>
                         <tr>
                             <td><label style="font-size:12px">Action Taken:</label></td>
-                            <td><label style="font-size:12px;font-weight:900!important"> Sample </td>
+                            <td><label style="font-size:12px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row['act_taken']); ?></td>
                         </tr>
                         <tr>
                             <td><label style="font-size:12px">Parts Replaced:</label></td>
-                            <td><label style="font-size:12px;font-weight:900!important"> Sample </td>
+                            <td><label style="font-size:12px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row['parts_replaced']); ?></td>
                         </tr>
                         <tr>
                             <td><label style="font-size:12px">Notes:</label></td>
@@ -465,19 +475,19 @@ $userid= $_SESSION['userid'];
                             <td></td>
                         </tr>
                         <tr>
-                            <td><label style="font-size:12px">Equipment Type/Model:</label>&nbsp; <label style="font-size:12px;font-weight:900!important"> Sample </td>
+                            <td><label style="font-size:12px">Equipment Type/Model:</label>&nbsp; <label style="font-size:12px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row4['equip_type_model']); ?></td>
                         </tr>
                         <tr>
-                            <td><label style="font-size:12px">Problem/ Findings:</label>&nbsp; <label style="font-size:12px;font-weight:900!important"> Sample </td>
+                            <td><label style="font-size:12px">Problem/ Findings:</label>&nbsp; <label style="font-size:12px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row4['prob_find']); ?></td>
                         </tr>
                         <tr>
-                            <td><label style="font-size:12px">Work Description:</label>&nbsp; <label style="font-size:12px;font-weight:900!important"> Sample </td>
+                            <td><label style="font-size:12px">Work Description:</label>&nbsp; <label style="font-size:12px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row4['work_desc']); ?></td>
                         </tr>
                         <tr>
-                            <td><label style="font-size:12px">Action Taken:</label>&nbsp; <label style="font-size:12px;font-weight:900!important"> Sample </td>
+                            <td><label style="font-size:12px">Action Taken:</label>&nbsp; <label style="font-size:12px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row4['act_taken']); ?></td>
                         </tr>
                         <tr>
-                            <td><label style="font-size:12px">Parts Replaced:</label>&nbsp; <label style="font-size:12px;font-weight:900!important"> Sample </td>
+                            <td><label style="font-size:12px">Parts Replaced:</label>&nbsp; <label style="font-size:12px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row4['parts_replaced']); ?></td>
                         </tr>
                         <tr>
                             <td colspan="4"><label style="font-size:12px">Notes:</label> 
