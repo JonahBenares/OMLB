@@ -8,8 +8,11 @@ date_default_timezone_set("Asia/Manila");
 	$max = $row1['logid'] + 1;
    	$time_performed = $hour.':'.$minutes;
 
-   	if($status=='Done') $date_finish = date('Y-m-d H:i:s');
-   	else $date_finish = '';
+   	if($status=='Done') {
+		$date_finish = date('Y-m-d H:i:s');
+	}else{ 
+		$date_finish = '';
+	}
    	$now = date('Y-m-d H:i:s');
 	mysqli_query($con,"INSERT INTO log_head (log_id,date_performed,time_performed,unit,main_system,sub_system,notes,performed_by,status,logged_by,due_date,logged_date,date_finish, finished_by) VALUES ('$max','$date_performed','$time_performed','$unit','$main_id','$sub_id','$notes','$performed_by','$status','$logged_by','$due_date','$now','$date_finish','$logged_by')");
 

@@ -30,9 +30,13 @@ $userid= $_SESSION['userid'];
     $sql5 = mysqli_query($con,"SELECT MAX(log_id) as logid From log_head");
         $fetch = $sql5->fetch_array();
         $logid = $fetch['logid']+1;
-
+        if($status=='Done') {
+        	$date_finish = date('Y-m-d H:i:s');
+        }else{ 
+        	$date_finish = '';
+        }
     if($rows == 0){
-        $insert= $con->query("INSERT INTO tmp_log_head (log_id,date_performed,time_performed,unit,main_system,sub_system,notes,performed_by,status,logged_by,due_date,logged_date,date_finish) VALUES ('$max','$date_performed','$time_performed','$unit','$main_id','$sub_id','$notes','$performed_by','$status','$userid','$due_date', NOW(), NOW())");
+        $insert= $con->query("INSERT INTO tmp_log_head (log_id,date_performed,time_performed,unit,main_system,sub_system,notes,performed_by,status,logged_by,due_date,logged_date,date_finish) VALUES ('$max','$date_performed','$time_performed','$unit','$main_id','$sub_id','$notes','$performed_by','$status','$userid','$due_date', NOW(), '$date_finish')");
         
         if(!isset($counterX) || $counterX == ''){
             $ctrx = $counter;
