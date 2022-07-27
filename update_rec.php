@@ -97,6 +97,16 @@ $userid= $_SESSION['userid'];
             frm.append('minutes', minutes);
             var notes =document.getElementById('notes').value;
             frm.append('notes', notes);
+            var equip_type_model =document.getElementById('equip_type_model').value;
+            frm.append('equip_type_model', equip_type_model);
+            var prob_find =document.getElementById('prob_find').value;
+            frm.append('prob_find', prob_find);
+            var work_desc =document.getElementById('work_desc').value;
+            frm.append('work_desc', work_desc);
+            var act_taken =document.getElementById('act_taken').value;
+            frm.append('act_taken', act_taken);
+            var parts_replaced =document.getElementById('parts_replaced').value;
+            frm.append('parts_replaced', parts_replaced);
             var performed_by =document.getElementById('performed_by').value;
             frm.append('performed_by', performed_by);
             var status =document.getElementById('status').value;
@@ -126,7 +136,7 @@ $userid= $_SESSION['userid'];
 
         $('#addActivity').live('click', function() {
             ii++;
-            $('<div class = "acti'+ii+'"><div class="row"><div for="p_acti" class="col-lg-3"></div><div class="col-lg-3"><input type="file" name="attach_file'+ii+'" id="p_acti'+ii+'" class="btn btn-sm btn-default " style="width:100%" ><div id="certBox'+ii+'" class="acti"></div></div><div for = "attach_name1" class="col-lg-3"><input type="name" name="attach_name'+ii+'" id="attach_name'+ii+'" class="form-control" style="width:100%;height:35px;margin-bottom:5px;" placeholder="Remarks"></div><div class="col-lg-3"><a href="#" class="btn btn-primary btn-sm btn-fill" id="addActivity">+</a> || <a href="#" class="btn btn-danger btn-sm btn-fill" id="remActivity">x</a></div></div></div>').appendTo(activityDiv);
+            $('<div class = "acti'+ii+'"><div class="row"><div class="col-lg-5" style="padding-right:0px"><input type="file" name="attach_file'+ii+'" id="p_acti'+ii+'" class="btn btn-sm btn-default " style="width:100%" ><div id="certBox'+ii+'" class="acti"></div></div><div for = "attach_name1" class="col-lg-5" style="padding-right:0px"><input type="name" name="attach_name'+ii+'" id="attach_name'+ii+'" class="form-control" style="width:100%;height:35px;margin-bottom:5px;" placeholder="Remarks"></div><div class="col-lg-2"><a href="#" class="btn btn-primary btn-sm btn-fill" id="addActivity" style="padding:5px 8px">+</a> <a href="#" class="btn btn-danger btn-sm btn-fill" id="remActivity" style="padding:5px 9px">x</a></div></div></div>').appendTo(activityDiv);
             
                /* var count = ii - 1;*/
                 document.getElementById("counterX").value = ii;
@@ -163,38 +173,52 @@ $userid= $_SESSION['userid'];
                     <form method = "POST" enctype="multipart/form-data" id = "add-vendor" name = "addvendor" >
                         <table>
                             <tr>
-                                <th>Date Performed: </th >
-                                <td colspan="4"><input type = "date" id = "date_performed" name = "date_performed" class = "form-control" required style='width:450px'></td>
+                                <td width="">Date Performed: </td>
+                                <td colspan="4"><input type = "date" id = "date_performed" name = "date_performed" class = "form-control" required style='width:450px;margin-bottom:0px'></td>
                             </tr>
                             <tr>
-                                <th> </th >
-                                <td colspan="4">
-                                    <br>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Time Performed: </th>
-                                <td><input type = "text" id = "hour" onkeypress="return isNumberKey(event)" maxlength="2" name = "hour" class = "form-control" placeholder="Hour" required></td> 
+                                <td>Time Performed: </td>
+                                <td><input type = "text" id = "hour" onkeypress="return isNumberKey(event)" maxlength="2" name = "hour" class = "form-control" placeholder="Hour" required style="margin-bottom:0px"></td> 
                                 <td > : </td>
-                                <td> <input type = "text" id = "minutes" onkeypress="return isNumberKey(event)" maxlength="2" name = "minutes" class = "form-control" placeholder="Minutes" required></td>
+                                <td> <input type = "text" id = "minutes" onkeypress="return isNumberKey(event)" maxlength="2" name = "minutes" class = "form-control" placeholder="Minutes" required style="margin-bottom:0px"></td>
                                 <!-- <td>
                                     <input type = "radio" name = "time_of_day" value = "AM" required> AM
                                     <input type = "radio" name = "time_of_day" value = "PM" required> PM
                                 </td> -->
                             </tr>
                             <tr>
-                                <th >Notes: </th >
-                                <td colspan="4"><textarea rows='10' class = "form-control" id = "notes" name = "notes" style='resize:none'></textarea></td>
+                                <td >Equipment Type/Model: </td>
+                                <td colspan="4"><textarea rows='1' class = "form-control" id = "equip_type_model" name = "equip_type_model" style='resize:none;margin: 0;'></textarea></td>
                             </tr>
                             <tr>
-                                <th >Performed By: </th >
-                                <td colspan="4"><input type = "text" name = "performed_by" id = "performed_by" class = "form-control"></td>
+                                <td >Problem/ Findings: </td>
+                                <td colspan="4"><textarea rows='2' class = "form-control" id = "prob_find" name = "prob_find" style='resize:none;margin: 0;'></textarea></td>
                             </tr>
                             <tr>
-                                <th >Status: </th >
+                                <td >Work Description: </td>
+                                <td colspan="4"><textarea rows='2' class = "form-control" id = "work_desc" name = "work_desc" style='resize:none;margin: 0;'></textarea></td>
+                            </tr>
+                            <tr>
+                                <td >Action Taken: </td>
+                                <td colspan="4"><textarea rows='2' class = "form-control" id = "act_taken" name = "act_taken" style='resize:none;margin: 0;'></textarea></td>
+                            </tr>
+                            <tr>
+                                <td >Parts Replaced: </td>
+                                <td colspan="4"><textarea rows='2' class = "form-control" id = "parts_replaced" name = "parts_replaced" style='resize:none;margin: 0;'></textarea></td>
+                            </tr>
+                            <tr>
+                                <td >Notes: </td>
+                                <td colspan="4"><textarea rows='2' class = "form-control" id = "notes" name = "notes" style='resize:none;margin: 0;'></textarea></td>
+                            </tr>
+                            <tr>
+                                <td >Performed By: </th >
+                                <td colspan="4"><input type = "text" name = "performed_by" id = "performed_by" class = "form-control" style="margin-bottom:0px"></td>
+                            </tr>
+                            <tr>
+                                <td >Status: </td>
                                 <td colspan="4">
                                   <!-- <input type = "text" name = "performed_by" class = "form-control"> -->
-                                    <select class = "form-control" id = "status" name = "status">
+                                    <select class = "form-control" id = "status" name = "status" style="margin-bottom: 0px;">
                                         <option selected visited disabled>-Select Status-</option>
                                         <option value="Done">Done</option>
                                         <option value="On-Progress">On-Progress</option>
@@ -202,21 +226,19 @@ $userid= $_SESSION['userid'];
                                 </td>
                             </tr>
                         </table><br>
+                        <label for="p_acti">Attach Files:</label>
                         <div id = "p_activity">
                             <div class="row" >
-                                <!-- <div><strong></strong></div> -->
-                                <label class="col-lg-3" for="p_acti">Attach Files:</label>
-                                <div class="col-lg-3">
+                                <div class="col-lg-5" style="padding-right:0px">
                                     <input type="file" name="attach_file1" id="p_acti1" class="btn btn-sm btn-default " style="width:100%" >
-                                   <!--  <div id='certBox1' class='acti'></div> -->
                                 </div>
-                                <div class="col-lg-3">
+                                <div class="col-lg-5"  style="padding-right:0px">
                                     <input type="name" name="attach_name1" id="attach_name1" class="form-control" style="width:100%;height:35px;margin-bottom:5px;" placeholder="Remarks" > 
                                     <input type = "hidden" value = "1" id = "counter" name = "counter">
                                 </div>                               
-                                <div class="col-lg-3">
-                                    <a href="#" class="btn btn-primary btn-sm btn-fill" id="addActivity">+</a> || 
-                                    <a href="#" class="btn btn-danger btn-sm btn-fill" id="remActivity">x</a>
+                                <div class="col-lg-2">
+                                    <a href="#" class="btn btn-primary btn-xs btn-fill" id="addActivity" style="padding:5px 8px">+</a>
+                                    <a href="#" class="btn btn-danger btn-xs btn-fill" id="remActivity" style="padding:5px 9px">x</a>
                                 </div>
                             </div>
                             <div class = "row">
@@ -255,7 +277,7 @@ $userid= $_SESSION['userid'];
                     $row = mysqli_fetch_array($sql2);
                     $diff = dateDifference($row['due_date'],$today);
                 ?>
-                <span style="font-size:12px">Status:&nbsp</span> 
+                <span style="font-size:12px">Status:</span> 
                 <?php if($row['status'] == 'Done') { ?>
                 <span style="font-size:12px;font-weight:900!important" class = "label label-success"><?php echo $row['status']; ?></span>
                 <?php } else { ?>
@@ -267,11 +289,11 @@ $userid= $_SESSION['userid'];
                 <div class="shadow latest" style="">
                     <table width="100%" class="" style="text-align: left;">                        
                         <tr>                         
-                            <td width="20%"><label style="font-size:12px">Date/Time Performed:&nbsp</label></td>
+                            <td width="20%"><label style="font-size:12px">Date/Time Performed:</label></td>
                             <td width="80%"> <label style="font-size:12px;font-weight:900!important"><?php echo $row['date_performed'].' '.$row['time_performed']?></label></td>
                         </tr>
                         <tr>
-                            <td> <label style="font-size:12px">Due Date:&nbsp</label></td>
+                            <td> <label style="font-size:12px">Due Date:</label></td>
                             <td>   
                                 <label style="font-size:12px;font-weight:900!important">
                                     <?php echo $row['due_date']?>
@@ -287,24 +309,44 @@ $userid= $_SESSION['userid'];
                             </td>
                         </tr>
                         <tr>
-                            <td><label style="font-size:12px">Performed By:&nbsp</label></td> 
+                            <td><label style="font-size:12px">Performed By:</label></td> 
                             <td><label style="font-size:12px;font-weight:900!important"><?php echo $row['performed_by'] ?></label></td>                             
                         </tr>
                         <tr>
-                            <td><label style="font-size:12px">Unit:&nbsp</label></td>                                
+                            <td><label style="font-size:12px">Unit:</label></td>                                
                             <td><label style="font-size:12px;font-weight:900!important"><?php echo getInfo($con, "unit_name", "unit", "unit_id", $row['unit']); ?></label></td>
                         </tr>
                         <tr>
-                            <td><label style="font-size:12px">Main Category:&nbsp</label></td> 
+                            <td><label style="font-size:12px">Main Category:</label></td> 
                             <td><label style="font-size:12px;font-weight:900!important"><?php echo getInfo($con, "system_name", "main_system", "main_id", $row['main_system']); ?></label></td>
                         </tr>
                         <tr>
-                            <td><label style="font-size:12px">Sub System:&nbsp</label></td>
+                            <td><label style="font-size:12px">Sub System:</label></td>
                             <td><label style="font-size:12px;font-weight:900!important"><?php echo getInfo($con, "subsys_name", "sub_system", "sub_id", $row['sub_system']); ?></label>
                             </td>
                         </tr>
                         <tr>
-                            <td><label style="font-size:12px">Notes:&nbsp</label></td>
+                            <td><label style="font-size:12px">Equipment Type/Model:</label></td>
+                            <td><label style="font-size:12px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row['equip_type_model']); ?></td>
+                        </tr>
+                        <tr>
+                            <td><label style="font-size:12px">Problem/ Findings:</label></td>
+                            <td><label style="font-size:12px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row['prob_find']); ?></td>
+                        </tr>
+                        <tr>
+                            <td><label style="font-size:12px">Work Description:</label></td>
+                            <td><label style="font-size:12px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row['work_desc']); ?></td>
+                        </tr>
+                        <tr>
+                            <td><label style="font-size:12px">Action Taken:</label></td>
+                            <td><label style="font-size:12px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row['act_taken']); ?></td>
+                        </tr>
+                        <tr>
+                            <td><label style="font-size:12px">Parts Replaced:</label></td>
+                            <td><label style="font-size:12px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row['parts_replaced']); ?></td>
+                        </tr>
+                        <tr>
+                            <td><label style="font-size:12px">Notes:</label></td>
                             <td><label style="font-size:12px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row['notes']); ?></label> </td>
                         </tr>
                         <tr>
@@ -313,18 +355,18 @@ $userid= $_SESSION['userid'];
                             </td>
                         </tr>
                         <tr>
-                            <td><label style="font-size:12px">Date Finished:&nbsp</label> </td>                                
+                            <td><label style="font-size:12px">Date Finished:</label> </td>                                
                             <td><label style="font-size:12px;font-weight:900!important"><?php echo $row['date_finish'] ?></label>
                             </td>
                         </tr>
                         <tr>
-                            <td><label style="font-size:12px">Done by:&nbsp</label> </td>
+                            <td><label style="font-size:12px">Done by:</label> </td>
                             <td><label style="font-size:12px;font-weight:900!important"><?php echo getInfo($con, "fullname", "users", "user_id", $row['finished_by']); ?></label>
                             </td>
                         </tr>
                         <?php } else { ?>
                         <td>
-                            <label style="font-size:12px">Status:&nbsp</label> </td>
+                            <label style="font-size:12px">Status:</label> </td>
                          <td>   <label style="font-size:12px;font-weight:900!important"><?php echo $row['status'] ?></label>
                         </td>
                         <?php } ?>
@@ -418,43 +460,58 @@ $userid= $_SESSION['userid'];
                     while($row4 = mysqli_fetch_array($sql5)) {
                 ?>
                 <div class="shadow latest1" style="">
-                    <table width="100%" class="" style="text-align: left;">
+                    <table width="100%" class="table-bosrdered" style="text-align: left;">
                         <tr>                        
                             <td>
-                                <label style="font-size:12px">Date/Time:&nbsp</label> 
+                                <label style="font-size:12px">Date/Time:</label> 
                                 <label style="font-size:12px;font-weight:900!important"><?php echo $row4['date_performed'].' '.$row4['time_performed']?></label>
                             </td>                                      
                         </tr>
                         <tr>
                             <td  colspan="4">
-                                <label style="font-size:12px">Performed By:&nbsp</label> 
+                                <label style="font-size:12px">Performed By:</label> 
                                 <label style="font-size:12px;font-weight:900!important"><?php echo $row4['performed_by'] ?></label>
                             </td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td colspan="4"><label style="font-size:12px">Notes:&nbsp</label> 
+                            <td><label style="font-size:12px">Equipment Type/Model:</label>&nbsp; <label style="font-size:12px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row4['equip_type_model']); ?></td>
+                        </tr>
+                        <tr>
+                            <td><label style="font-size:12px">Problem/ Findings:</label>&nbsp; <label style="font-size:12px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row4['prob_find']); ?></td>
+                        </tr>
+                        <tr>
+                            <td><label style="font-size:12px">Work Description:</label>&nbsp; <label style="font-size:12px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row4['work_desc']); ?></td>
+                        </tr>
+                        <tr>
+                            <td><label style="font-size:12px">Action Taken:</label>&nbsp; <label style="font-size:12px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row4['act_taken']); ?></td>
+                        </tr>
+                        <tr>
+                            <td><label style="font-size:12px">Parts Replaced:</label>&nbsp; <label style="font-size:12px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row4['parts_replaced']); ?></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><label style="font-size:12px">Notes:</label> 
                             <label style="font-size:12px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row4['notes']); ?></label> </td>
                         </tr>
                         <tr>
                             <?php if ($row4['status'] == 'Done') { ?>
                             <td colspan="4">
-                                <label style="font-size:12px">Status:&nbsp</label> 
+                                <label style="font-size:12px">Status:</label> 
                                 <label style="font-size:12px;font-weight:900!important"><?php echo $row4['status'] ?></label>  
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <label style="font-size:12px">Date Finished:&nbsp</label> 
+                                <label style="font-size:12px">Date Finished:</label> 
                                 <label style="font-size:12px;font-weight:900!important"><?php echo $row4['date_finish'] ?></label>
                             </td>
                         </tr>
                         <?php } else { ?>
                         <td>
-                            <label style="font-size:12px">Status:&nbsp</label> 
+                            <label style="font-size:12px">Status:</label> 
                             <label style="font-size:12px;font-weight:900!important"><?php echo $row4['status'] ?></label>
                         </td>
-                        <?php } ?>
+                        <?php } ?>  
                         <tr>
                             <td>
                                 <label style="font-size:12px">Logged by/Date&Time:</label> 

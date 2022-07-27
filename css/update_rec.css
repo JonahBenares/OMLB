@@ -4,6 +4,7 @@ input{
     table tbody tr td {
         background-color: #3d3d3d00;
         border: 1px solid #47474700!important;
+        padding: 5px 0px;
     }
     .latest{
         color: #ffffff;
