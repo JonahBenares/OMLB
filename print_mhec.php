@@ -136,7 +136,7 @@
 								<small>Date:</small>
 							</td>
 							<td class="undline-tab" width="40%">
-								<small><?php echo $row['date_performed']?></small>
+								<small><?php echo $row['date_requested']?></small>
 							</td>
 						</tr>
 						<tr>
@@ -144,7 +144,7 @@
 								<small>Equipment Type/Model:</small>
 							</td>
 							<td class="undline-tab marg-under" width="40%">
-								<small></small>
+								<small><?php echo $row['equip_type_model']?></small>
 							</td>
 							<td class="marg-under" width="5%" align="right">
 								<small>WO#:</small>
@@ -287,8 +287,8 @@
 							            ?>
 											<td><small><?php echo $count;?></small></td>
 											<td><small><?php echo $row1['notes'];?></small></td>
-											<td><small><?php echo $row1['date_performed'];?></small></td>
-											<td><small><?php echo $row1['date_finish'];?></small></td>
+											<td><small><?php echo $row1['date_performed'].' '.$row1['time_performed'];?></small></td>
+											<td><small><?php echo $row1['date_finished'].' '.$row1['time_finished'];?></small></td>
 											<td><small></small></td>
 										<?php } ?>
 									</tr>

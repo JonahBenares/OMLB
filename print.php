@@ -142,7 +142,7 @@
 								<small></small>
 							</td>
 							<td class="undline-tab marg-under" width="40%">
-								<small><?php echo $row['equip_type_model']?></small>
+								<small></small>
 							</td>
 							<td class="marg-under" width="10%">
 								<small>WO#:</small>
@@ -199,14 +199,6 @@
 											<small>Civil & Special Projects</small>
 										</td>
 									</tr>
-									<tr>
-										<td width="10%" style="border:1px solid black;">
-											<small></small>
-										</td>
-										<td width="90%">
-											<small>ECMG</small>
-										</td>
-									</tr>
 								</table>
 							</td>
 							<td class="paded-top-10"  width="10%">
@@ -254,14 +246,6 @@
 											<small>Civil & Special Projects</small>
 										</td>
 									</tr>
-									<tr>
-										<td width="10%" style="border:1px solid black;">
-											<small></small>
-										</td>
-										<td width="90%">
-											<small>ECMG</small>
-										</td>
-									</tr>
 								</table>
 							</td>
 						</tr>
@@ -273,8 +257,8 @@
 									<tr>
 										<td width="10%"><center><small><strong>Item#</strong></small></center></></td>
 										<td width="50%"><center><small><strong>Description</strong></small></center></></td>
-										<td width="15%"><center><small><strong>Date/Time Performed</strong></small></center></></td>
-										<td width="15%"><center><small><strong>Date/Finished Finished</strong></small></center></></td>
+										<td width="15%"><center><small><strong>Date Started</strong></small></center></></td>
+										<td width="15%"><center><small><strong>Date Finished</strong></small></center></></td>
 										<td width="10%"><center><small><strong>Remarks</strong></small></center></></td>
 									</tr>
 									<tr>
@@ -285,8 +269,8 @@
 							            ?>
 											<td><small><?php echo $count;?></small></td>
 											<td><small><?php echo $row1['notes'];?></small></td>
-											<td><small><?php echo $row1['date_performed'].' '.$row1['time_performed'];?></small></td>
-											<td><small><?php echo $row1['date_finished'].' '.$row1['time_finished'];?></small></td>
+											<td><small><?php echo $row1['date_performed'];?></small></td>
+											<td><small><?php echo $row1['date_finish'];?></small></td>
 											<td><small></small></td>
 										<?php } ?>
 									</tr>
@@ -364,6 +348,18 @@
 										<td class="undline-tab"><small></small></td>
 									</tr>									
 								</table>
+								<table width="100%">
+									<tr>
+										<td width="15%"><small>Date:</small></td>
+										<td width="20%" class="undline-tab"><small></small></td>
+										<td width="65%" ><small></small></td>
+									</tr>
+									<tr>
+										<td width="15%"><small>Recieved by:</small></td>
+										<td width="20%" class="undline-tab"><small></small></td>
+										<td width="65%" ><small></small></td>
+									</tr>
+								</table>
 							</td>
 						</tr>
 
@@ -401,22 +397,10 @@
 									<tr>
 										
 										<td width="15%"><small></small></td>
-										<td width="30%"><center><small>Plant Superintendent</small></center></td>
+										<td width="30%"><center><small>Power Delivery & Technical Manager</small></center></td>
 										<td width="25%"><small></small></td>
 										<td width="25%"><center><small>Technical Director</small></center></td>
 										<td width="5%"><small></small></td>
-									</tr>
-								</table>
-								<table width="100%">
-									<tr>
-										<td width="15%"><small>Date:</small></td>
-										<td width="20%" class="undline-tab"><small></small></td>
-										<td width="65%" ><small></small></td>
-									</tr>
-									<tr>
-										<td width="15%"><small>Recieved by:</small></td>
-										<td width="20%" class="undline-tab"><small></small></td>
-										<td width="65%" ><small></small></td>
 									</tr>
 								</table>
 							</td>
