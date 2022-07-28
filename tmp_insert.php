@@ -27,6 +27,7 @@ $userid= $_SESSION['userid'];
     $row1 = mysqli_fetch_array($sql1);
     $max = $row1['logid'] + 1;
     $time_performed = $hour.':'.$minutes;
+    $time_finished = $hour_finished.':'.$minutes_finished;
     $sql5 = mysqli_query($con,"SELECT MAX(log_id) as logid From log_head");
     $fetch = $sql5->fetch_array();
     $logid = $fetch['logid']+1;
@@ -37,7 +38,7 @@ $userid= $_SESSION['userid'];
     }
     
     if($rows == 0){
-        $insert= $con->query("INSERT INTO tmp_log_head (log_id,date_performed,time_performed,unit,main_system,sub_system,notes,equip_type_model,prob_find,work_desc,act_taken,parts_replaced,performed_by,status,logged_by,due_date,logged_date,date_finish) VALUES ('$max','$date_performed','$time_performed','$unit','$main_id','$sub_id','$notes','$equip_type_model','$prob_find','$work_desc','$act_taken','$parts_replaced','$performed_by','$status','$userid','$due_date', NOW(), '$date_finish')");
+        $insert= $con->query("INSERT INTO tmp_log_head (log_id,date_performed,time_performed,unit,main_system,sub_system,notes,equip_type_model,prob_find,work_desc,act_taken,parts_replaced,performed_by,status,logged_by,due_date,logged_date,date_finish,date_requested,date_finished,time_finished) VALUES ('$max','$date_performed','$time_performed','$unit','$main_id','$sub_id','$notes','$equip_type_model','$prob_find','$work_desc','$act_taken','$parts_replaced','$performed_by','$status','$userid','$due_date', NOW(), '$date_finish','$date_requested','$date_finished','$time_finished')");
         if(!isset($counterX) || $counterX == ''){
             $ctrx = $counter;
         } 
@@ -61,7 +62,7 @@ $userid= $_SESSION['userid'];
             }
         }  
     } else {
-        $update = mysqli_query($con,"UPDATE tmp_log_head SET date_performed = '$date_performed', time_performed = '$time_performed', due_date = '$due_date', notes = '$notes', equip_type_model = '$equip_type_model', prob_find = '$prob_find', work_desc = '$work_desc', act_taken = '$act_taken', parts_replaced = '$parts_replaced', performed_by = '$performed_by', status = '$status' WHERE logged_by = '$userid'");
+        $update = mysqli_query($con,"UPDATE tmp_log_head SET date_performed = '$date_performed', time_performed = '$time_performed', due_date = '$due_date', notes = '$notes', equip_type_model = '$equip_type_model', prob_find = '$prob_find', work_desc = '$work_desc', act_taken = '$act_taken', parts_replaced = '$parts_replaced', performed_by = '$performed_by', status = '$status', date_requested = '$date_requested', date_finished = '$date_finished', time_finished = '$time_finished' WHERE logged_by = '$userid'");
        
           if(!isset($counterX) || $counterX == ''){
             $ctrx = $counter;

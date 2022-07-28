@@ -31,7 +31,7 @@
 
         if($rows_count != 0){
             $notes=mysqli_real_escape_string($con,$rows['notes']);
-            $insert = mysqli_query($con,"INSERT INTO log_head (log_id,date_performed,time_performed,unit,main_system,sub_system,notes,equip_type_model,prob_find,work_desc,act_taken,parts_replaced,performed_by,status,logged_by,due_date,logged_date,date_finish, finished_by) VALUES ('$max','$rows[date_performed]','$rows[time_performed]','$rows[unit]','$rows[main_system]','$rows[sub_system]','$notes','$equip_type_model','$prob_find','$work_desc','$act_taken','$parts_replaced','$rows[performed_by]','$rows[status]','$rows[logged_by]','$rows[due_date]','$rows[logged_date]', '$rows[date_finish]', '$fin')");
+            $insert = mysqli_query($con,"INSERT INTO log_head (log_id,date_performed,time_performed,unit,main_system,sub_system,notes,equip_type_model,prob_find,work_desc,act_taken,parts_replaced,performed_by,status,logged_by,due_date,logged_date,date_finish, finished_by,date_requested,date_finished,time_finished) VALUES ('$max','$rows[date_performed]','$rows[time_performed]','$rows[unit]','$rows[main_system]','$rows[sub_system]','$notes','$equip_type_model','$prob_find','$work_desc','$act_taken','$parts_replaced','$rows[performed_by]','$rows[status]','$rows[logged_by]','$rows[due_date]','$rows[logged_date]', '$rows[date_finish]', '$fin','$rows[date_requested]','$rows[date_finished]','$rows[time_finished]')");
          
         }
 
@@ -109,10 +109,10 @@
                             </tr>
                             <tr>
                                 <td>
-                                    Date/Time Performed:  
+                                    Date Requested: 
                                 </td>
                                 <td>
-                                    <?php echo $rowi['date_performed'] . ' ' . $rowi['time_performed']; ?> 
+                                    <?php echo $rowi['date_requested']; ?>
                                 </td>
                             </tr>
                             <tr>
@@ -154,6 +154,22 @@
                                 </td>
                                 <td>
                                     <?php echo $rowi['parts_replaced']; ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Date/Time Performed:  
+                                </td>
+                                <td>
+                                    <?php echo $rowi['date_performed'] . ' ' . $rowi['time_performed']; ?> 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Date/Time Finished:  
+                                </td>
+                                <td>
+                                    <?php echo $rowi['date_finished'] . ' ' . $rowi['time_finished']; ?> 
                                 </td>
                             </tr>
                             <tr>
@@ -238,6 +254,9 @@
                         <input type = "hidden" name = "parts_replaced" value = "<?php echo $rowi['parts_replaced'];?>">
                         <input type = "hidden" name = "performed_by" value = "<?php echo $rowi['performed_by'];?>">
                         <input type = "hidden" name = "status" value = "<?php echo $rowi['status'];?>">
+                        <input type = "hidden" name = "date_requested" value = "<?php echo $rowi['date_requested'];?>">
+                        <input type = "hidden" name = "date_finished" value = "<?php echo $rowi['date_finished'];?>">
+                        <input type = "hidden" name = "time_finished" value = "<?php echo $rowi['time_finished'];?>">
                     </form>
                 </div>
             </div>

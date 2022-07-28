@@ -152,6 +152,14 @@
             frm.append('performed_by', performed_by);
             var status =document.getElementById('status').value;
             frm.append('status', status);
+            var date_requested =document.getElementById('date_requested').value;
+            frm.append('date_requested', date_requested);
+            var date_finished =document.getElementById('date_finished').value;
+            frm.append('date_finished', date_finished);
+            var hour_finished =document.getElementById('hour_finished').value;
+            frm.append('hour_finished', hour_finished);
+            var minutes_finished =document.getElementById('minutes_finished').value;
+            frm.append('minutes_finished', minutes_finished);
             $.ajax({
                 type: 'POST',
                 url: "tmp_insert.php",
@@ -249,10 +257,17 @@
                                     $row_num = $sql2->num_rows;
                                 ?>
                                 <tr>
+                                <?php if(!empty($row['date_requested'])) { ?>
                                     <th width="50%">Date Requested: </th>
                                     <td colspan="4">
-                                        <input type = "date" id = "" name = "" class = "form-control" required style='width:450px' value = "" autocomplete="off">
+                                        <input type = "date" id = "date_requested" name = "date_requested" class = "form-control" required style='width:450px' value = "<?php echo $row['date_requested'];?>" autocomplete="off">
                                     </td>
+                                <?php } else { ?>
+                                    <th width="50%">Date Requested: </th>
+                                    <td colspan="4">
+                                        <input type = "date" id = "date_requested" name = "date_requested" class = "form-control" required style='width:450px' autocomplete="off">
+                                    </td>
+                                <?php } ?>
                                 </tr>
                                 <tr>
                                 <?php if(!empty($row['equip_type_model'])){ ?>
@@ -368,20 +383,52 @@
                                     <?php } ?>
                                 </tr>
                                 <tr>
+                                <?php if(!empty($row['date_finished'])) { ?>
                                     <th width="50%">Date Finished: </th>
                                     <td colspan="4">
-                                        <input type = "date" id = "" name = "" class = "form-control" required style='width:450px' value = "" autocomplete="off">
+                                        <input type = "date" id = "date_finished" name = "date_finished" class = "form-control" required style='width:450px' value = "<?php echo $row['date_finished'];?>" autocomplete="off">
                                     </td>
+                                <?php } else { ?>
+                                    <th width="50%">Date Finished: </th>
+                                    <td colspan="4">
+                                        <input type = "date" id = "date_finished" name = "date_finished" class = "form-control" required style='width:450px' autocomplete="off">
+                                    </td>
+                                <?php } ?>
                                 </tr>
                                 <tr>
+                                    <?php if(!empty($row['time_finished'])) { 
+                                        $time1 = $row['time_finished'];
+                                        $time_finished = explode(":", $time1);
+                                    ?>
                                     <th>Time Finished: </th>
                                     <td>
-                                        <input type = "text" id = "hour" onkeypress="return isNumberKey(event)" maxlength="2" name = "hour" class = "form-control" value = "" placeholder="Hour" required autocomplete="off" style="margin:0px">
-                                    </td> 
-                                    <td > : </td>
-                                    <td> 
-                                        <input type = "text" id = "minutes" onkeypress="return isNumberKey(event)" maxlength="2" name = "minutes" class = "form-control" value = "" placeholder="Minutes" required style="margin:0px">
+                                        <input type = "text" id = "hour_finished" onkeypress="return isNumberKey(event)" maxlength="2" name = "hour_finished" class = "form-control" value = "<?php echo $time_finished[0]; ?>" placeholder="Hour" required autocomplete="off" style="margin:0px">
                                     </td>
+                                    <?php } else if(empty($row['time_finished'])){ ?>
+                                    <th>Time Finished: </th>
+                                    <td>
+                                        <input type = "text" id = "hour_finished" onkeypress="return isNumberKey(event)" maxlength="2" name = "hour_finished" class = "form-control" value = "" placeholder="Hour" required autocomplete="off" style="margin:0px">
+                                    </td>
+                                    <?php } else { ?>
+                                    <th>Time Finished: </th>
+                                    <td>
+                                        <input type = "text" id = "hour_finished" onkeypress="return isNumberKey(event)" maxlength="2" name = "hour_finished" class = "form-control" value = "" placeholder="Hour" required autocomplete="off" style="margin:0px">
+                                    </td>
+                                    <?php } ?> 
+                                    <td > : </td>
+                                    <?php if(!empty($row['time_finished'])){ ?>
+                                    <td> 
+                                        <input type = "text" id = "minutes_finished" onkeypress="return isNumberKey(event)" maxlength="2" name = "minutes_finished" class = "form-control" value = "<?php echo $time_finished[1]; ?>" placeholder="Minutes" required style="margin:0px">
+                                    </td>
+                                    <?php } else if(empty($row['time_finished'])) { ?>
+                                    <td>
+                                        <input type = "text" id = "minutes_finished" onkeypress="return isNumberKey(event)" maxlength="2" name = "minutes_finished" class = "form-control" placeholder="Minutes" required style="margin:0px">
+                                    </td>
+                                    <?php } else { ?>
+                                    <td>
+                                        <input type = "text" id = "minutes_finished" onkeypress="return isNumberKey(event)" maxlength="2" name = "minutes_finished" class = "form-control" placeholder="Minutes" required style="margin:0px">
+                                    </td>
+                                <?php } ?>
                                 </tr>
                                 <tr>
                                     <?php if(!empty($row['due_date'])){ ?>

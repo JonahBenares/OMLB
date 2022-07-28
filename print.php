@@ -142,7 +142,7 @@
 								<small></small>
 							</td>
 							<td class="undline-tab marg-under" width="40%">
-								<small></small>
+								<small><?php echo $row['equip_type_model']?></small>
 							</td>
 							<td class="marg-under" width="10%">
 								<small>WO#:</small>
@@ -270,7 +270,7 @@
 											<td><small><?php echo $count;?></small></td>
 											<td><small><?php echo $row1['notes'];?></small></td>
 											<td><small><?php echo $row1['date_performed'];?></small></td>
-											<td><small><?php echo $row1['date_finish'];?></small></td>
+											<td><small><?php echo $row1['date_finished'];?></small></td>
 											<td><small></small></td>
 										<?php } ?>
 									</tr>

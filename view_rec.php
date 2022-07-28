@@ -184,10 +184,10 @@ $userid= $_SESSION['userid'];
                                     <label style="font-size:15px;font-weight:900!important"><?php echo getInfo($con, "fullname", "users", "user_id", $row['finished_by']); ?></label>
                                 </td>                         
                                 <td width="13%">
-                                   <label style="font-size:15px">Date Finished:</label>  
+                                   <label style="font-size:15px">Date/Time Finished:</label>  
                                 </td>
                                 <td width="35%">
-                                    <label style="font-size:15px;font-weight:900!important"><?php echo $row['date_finish'] ?></label>
+                                    <label style="font-size:15px;font-weight:900!important"><?php echo $row['date_finished'].' '.$row['time_finished'] ?></label>
                                 </td>         
                             </tr>
                             <tr>
@@ -210,6 +210,10 @@ $userid= $_SESSION['userid'];
                                 <td colspan="4"><hr class="hr"></td>
                             </tr>
                         <?php } ?>
+                        <tr >
+                            <td><label style="font-size:15px">Date Requested:</label></td>
+                            <td><label style="font-size:15px;font-weight:900!important"><?php echo $row['date_requested']?></label></td>
+                        </tr>
                         <tr >
                             <td><label style="font-size:15px">Unit:</label></td>
                             <td><label style="font-size:15px;font-weight:900!important"><?php echo getInfo($con, "unit_name", "unit", "unit_id", $row['unit']); ?></label></td>
@@ -361,10 +365,17 @@ $userid= $_SESSION['userid'];
                                 <label class="<?php echo (($row4[status] == 'Done') ? 'label label-success' :'label label-warning'); ?>" style="font-size:15px;font-weight:900!important"><?php echo $row4['status'] ?></label>  
                             </td>
                         </tr>
-                            <?php if ($row4['status'] == 'Done') { ?>
                         <tr>
                             <td>
                                 <label style="font-size:15px">Date Requested:</label> 
+                                <label style="font-size:15px;font-weight:900!important"><?php echo $row4['date_requested']?></label>
+                            </td>
+                            <td style='width:50%'><label style="font-size:14px"></label></td>
+                        </tr>
+                            <?php if ($row4['status'] == 'Done') { ?>
+                        <tr>
+                            <td>
+                                <label style="font-size:15px"></label> 
                                 <label style="font-size:15px;font-weight:900!important"></label>
                             </td>
                             <td style='width:50%'><label style="font-size:14px">Notes:</label></td>
@@ -372,7 +383,7 @@ $userid= $_SESSION['userid'];
                         <tr>
                             <td>
                                 <label style="font-size:15px">Date/Time Finished:</label> 
-                                <label style="font-size:15px;font-weight:900!important"><?php echo $row4['date_finish'] ?></label>
+                                <label style="font-size:15px;font-weight:900!important"><?php echo $row4['date_finished'].' '.$row4['time_finished']?></label>
                             </td>
                             <td style='width:50%'><label style="font-size:14px">Notes:</label></td>
                         </tr>

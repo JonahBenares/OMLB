@@ -111,6 +111,14 @@ $userid= $_SESSION['userid'];
             frm.append('performed_by', performed_by);
             var status =document.getElementById('status').value;
             frm.append('status', status);
+            var date_requested =document.getElementById('date_requested').value;
+            frm.append('date_requested', date_requested);
+            var date_finished =document.getElementById('date_finished').value;
+            frm.append('date_finished', date_finished);
+            var hour_finished =document.getElementById('hour_finished').value;
+            frm.append('hour_finished', hour_finished);
+            var minutes_finished =document.getElementById('minutes_finished').value;
+            frm.append('minutes_finished', minutes_finished);
             $.ajax({
                 type: 'POST',
                 url: "update_newact_ins.php",
@@ -174,7 +182,7 @@ $userid= $_SESSION['userid'];
                         <table>
                             <tr>
                                 <td width="">Date Requested: </td>
-                                <td colspan="4"><input type = "date" id = "" name = "" class = "form-control" required style='width:450px;margin-bottom:0px'></td>
+                                <td colspan="4"><input type = "date" id = "date_requested" name = "date_requested" class = "form-control" required style='width:450px;margin-bottom:0px'></td>
                             </tr>
                             <tr>
                                 <td >Equipment Type/Model: </td>
@@ -212,13 +220,13 @@ $userid= $_SESSION['userid'];
                             </tr>
                             <tr>
                                 <td width="">Date Finished: </td>
-                                <td colspan="4"><input type = "date" id = "" name = "" class = "form-control" required style='width:450px;margin-bottom:0px'></td>
+                                <td colspan="4"><input type = "date" id = "date_finished" name = "date_finished" class = "form-control" required style='width:450px;margin-bottom:0px'></td>
                             </tr>
                             <tr>
                                 <td>Time Finished: </td>
-                                <td><input type = "text" id = "hour" onkeypress="return isNumberKey(event)" maxlength="2" name = "hour" class = "form-control" placeholder="Hour" required style="margin-bottom:0px"></td> 
+                                <td><input type = "text" id = "hour_finished" onkeypress="return isNumberKey(event)" maxlength="2" name = "hour_finished" class = "form-control" placeholder="Hour" required style="margin-bottom:0px"></td> 
                                 <td > : </td>
-                                <td> <input type = "text" id = "minutes" onkeypress="return isNumberKey(event)" maxlength="2" name = "minutes" class = "form-control" placeholder="Minutes" required style="margin-bottom:0px"></td>
+                                <td> <input type = "text" id = "minutes_finished" onkeypress="return isNumberKey(event)" maxlength="2" name = "minutes_finished" class = "form-control" placeholder="Minutes" required style="margin-bottom:0px"></td>
                                 <!-- <td>
                                     <input type = "radio" name = "time_of_day" value = "AM" required> AM
                                     <input type = "radio" name = "time_of_day" value = "PM" required> PM
@@ -308,7 +316,7 @@ $userid= $_SESSION['userid'];
                     <table width="100%" class="" style="text-align: left;">    
                         <tr>                         
                             <td width="20%"><label style="font-size:12px">Date Requested:</label></td>
-                            <td width="80%"> <label style="font-size:12px;font-weight:900!important"></label></td>
+                            <td width="80%"> <label style="font-size:12px;font-weight:900!important"><?php echo $row['date_requested']?></label></td>
                         </tr>                    
                         
                        
@@ -380,7 +388,7 @@ $userid= $_SESSION['userid'];
                         </tr>
                         <tr>
                             <td><label style="font-size:12px">Date/Time Finished:</label> </td>                                
-                            <td><label style="font-size:12px;font-weight:900!important"><?php echo $row['date_finish'] ?></label>
+                            <td><label style="font-size:12px;font-weight:900!important"><?php echo $row['date_finished'].' '.$row['time_finished']?></label>
                             </td>
                         </tr>
                         <tr>
@@ -488,7 +496,7 @@ $userid= $_SESSION['userid'];
                         <tr>                        
                             <td>
                                 <label style="font-size:12px">Date Requested:</label> 
-                                <label style="font-size:12px;font-weight:900!important"></label>
+                                <label style="font-size:12px;font-weight:900!important"><?php echo $row['date_requested']?></label>
                             </td>                                      
                         </tr>
                         <tr>
@@ -532,8 +540,8 @@ $userid= $_SESSION['userid'];
                         </tr>
                         <tr>
                             <td>
-                                <label style="font-size:12px">Date Finished:</label> 
-                                <label style="font-size:12px;font-weight:900!important"><?php echo $row4['date_finish'] ?></label>
+                                <label style="font-size:12px">Date/Time Finished:</label> 
+                                <label style="font-size:12px;font-weight:900!important"><?php echo $row4['date_finished'].' '.$row4['time_finished'] ?></label>
                             </td>
                         </tr>
                         <?php } else { ?>
