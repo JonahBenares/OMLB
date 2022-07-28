@@ -249,53 +249,10 @@
                                     $row_num = $sql2->num_rows;
                                 ?>
                                 <tr>
-                                    <?php if(!empty($row['date_performed'])) { ?>
-                                    <th width="50%">Date Performed: </th>
+                                    <th width="50%">Date Requested: </th>
                                     <td colspan="4">
-                                        <input type = "date" id = "date_performed" name = "date_performed" class = "form-control" required style='width:450px' value = "<?php echo $row['date_performed'];?>" autocomplete="off">
+                                        <input type = "date" id = "" name = "" class = "form-control" required style='width:450px' value = "" autocomplete="off">
                                     </td>
-                                    <?php } else { ?>
-                                    <th width="50%">Date Performed: </th>
-                                    <td colspan="4">
-                                        <input type = "date" id = "date_performed" name = "date_performed" class = "form-control" required style='width:450px' autocomplete="off">
-                                    </td>
-                                    <?php }?>
-                                </tr>
-                                
-                                <tr>
-                                    <?php if(!empty($row['time_performed'])) { 
-                                        $time = $row['time_performed'];
-                                        $time_performed = explode(":", $time);
-                                    ?>
-                                    <th>Time Performed: </th>
-                                    <td>
-                                        <input type = "text" id = "hour" onkeypress="return isNumberKey(event)" maxlength="2" name = "hour" class = "form-control" value = "<?php echo $time_performed[0]; ?>" placeholder="Hour" required autocomplete="off" style="margin:0px">
-                                    </td> 
-                                    <?php } else if(empty($row['time_performed'])){ ?>
-                                    <th>Time Performed: </th>
-                                    <td>
-                                        <input type = "text" id = "hour" onkeypress="return isNumberKey(event)" maxlength="2" name = "hour" class = "form-control" placeholder="Hour" required autocomplete="off" style="margin:0px">
-                                    </td>
-                                    <?php } else { ?>
-                                    <th>Time Performed: </th>
-                                    <td>
-                                        <input type = "text" id = "hour" onkeypress="return isNumberKey(event)" maxlength="2" name = "hour" class = "form-control" placeholder="Hour" required autocomplete="off" style="margin:0px">
-                                    </td>
-                                    <?php } ?>
-                                    <td > : </td>
-                                    <?php if(!empty($row['time_performed'])){ ?>
-                                    <td> 
-                                        <input type = "text" id = "minutes" onkeypress="return isNumberKey(event)" maxlength="2" name = "minutes" class = "form-control" value = "<?php echo $time_performed[1]; ?>" placeholder="Minutes" required style="margin:0px">
-                                    </td>
-                                    <?php } else if(empty($row['time_performed'])) { ?>
-                                    <td> 
-                                        <input type = "text" id = "minutes" onkeypress="return isNumberKey(event)" maxlength="2" name = "minutes" class = "form-control" placeholder="Minutes" required style="margin:0px">
-                                    </td>
-                                    <?php } else { ?>
-                                    <td> 
-                                        <input type = "text" id = "minutes" onkeypress="return isNumberKey(event)" maxlength="2" name = "minutes" class = "form-control" placeholder="Minutes" required style="margin:0px">
-                                    </td> 
-                                    <?php } ?>
                                 </tr>
                                 <tr>
                                 <?php if(!empty($row['equip_type_model'])){ ?>
@@ -361,6 +318,70 @@
                                         <textarea rows='2' class = "form-control" id = "parts_replaced"  name = "parts_replaced" style='resize:none;margin: 0px;'></textarea>
                                     </td>
                                 <?php } ?>
+                                </tr>
+                                <tr>
+                                    <?php if(!empty($row['date_performed'])) { ?>
+                                    <th width="50%">Date Performed: </th>
+                                    <td colspan="4">
+                                        <input type = "date" id = "date_performed" name = "date_performed" class = "form-control" required style='width:450px' value = "<?php echo $row['date_performed'];?>" autocomplete="off">
+                                    </td>
+                                    <?php } else { ?>
+                                    <th width="50%">Date Performed: </th>
+                                    <td colspan="4">
+                                        <input type = "date" id = "date_performed" name = "date_performed" class = "form-control" required style='width:450px' autocomplete="off">
+                                    </td>
+                                    <?php }?>
+                                </tr>
+                                <tr>
+                                    <?php if(!empty($row['time_performed'])) { 
+                                        $time = $row['time_performed'];
+                                        $time_performed = explode(":", $time);
+                                    ?>
+                                    <th>Time Performed: </th>
+                                    <td>
+                                        <input type = "text" id = "hour" onkeypress="return isNumberKey(event)" maxlength="2" name = "hour" class = "form-control" value = "<?php echo $time_performed[0]; ?>" placeholder="Hour" required autocomplete="off" style="margin:0px">
+                                    </td> 
+                                    <?php } else if(empty($row['time_performed'])){ ?>
+                                    <th>Time Performed: </th>
+                                    <td>
+                                        <input type = "text" id = "hour" onkeypress="return isNumberKey(event)" maxlength="2" name = "hour" class = "form-control" placeholder="Hour" required autocomplete="off" style="margin:0px">
+                                    </td>
+                                    <?php } else { ?>
+                                    <th>Time Performed: </th>
+                                    <td>
+                                        <input type = "text" id = "hour" onkeypress="return isNumberKey(event)" maxlength="2" name = "hour" class = "form-control" placeholder="Hour" required autocomplete="off" style="margin:0px">
+                                    </td>
+                                    <?php } ?>
+                                    <td > : </td>
+                                    <?php if(!empty($row['time_performed'])){ ?>
+                                    <td> 
+                                        <input type = "text" id = "minutes" onkeypress="return isNumberKey(event)" maxlength="2" name = "minutes" class = "form-control" value = "<?php echo $time_performed[1]; ?>" placeholder="Minutes" required style="margin:0px">
+                                    </td>
+                                    <?php } else if(empty($row['time_performed'])) { ?>
+                                    <td> 
+                                        <input type = "text" id = "minutes" onkeypress="return isNumberKey(event)" maxlength="2" name = "minutes" class = "form-control" placeholder="Minutes" required style="margin:0px">
+                                    </td>
+                                    <?php } else { ?>
+                                    <td> 
+                                        <input type = "text" id = "minutes" onkeypress="return isNumberKey(event)" maxlength="2" name = "minutes" class = "form-control" placeholder="Minutes" required style="margin:0px">
+                                    </td> 
+                                    <?php } ?>
+                                </tr>
+                                <tr>
+                                    <th width="50%">Date Finished: </th>
+                                    <td colspan="4">
+                                        <input type = "date" id = "" name = "" class = "form-control" required style='width:450px' value = "" autocomplete="off">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Time Finished: </th>
+                                    <td>
+                                        <input type = "text" id = "hour" onkeypress="return isNumberKey(event)" maxlength="2" name = "hour" class = "form-control" value = "" placeholder="Hour" required autocomplete="off" style="margin:0px">
+                                    </td> 
+                                    <td > : </td>
+                                    <td> 
+                                        <input type = "text" id = "minutes" onkeypress="return isNumberKey(event)" maxlength="2" name = "minutes" class = "form-control" value = "" placeholder="Minutes" required style="margin:0px">
+                                    </td>
                                 </tr>
                                 <tr>
                                     <?php if(!empty($row['due_date'])){ ?>

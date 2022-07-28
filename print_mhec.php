@@ -126,13 +126,13 @@
 				                $sql = mysqli_query($con,"SELECT * FROM log_head WHERE log_id = '$id'");
 				                $row = mysqli_fetch_array($sql);
 				            ?>
-							<td width="10%">
+							<td width="15%">
 								<small>Equipment:</small>
 							</td>
 							<td class="undline-tab" width="40%">
 								<small><?php echo getInfo($con, "unit_name", "unit", "unit_id", $row['unit']).', '.getInfo($con, "system_name", "main_system", "main_id", $row['main_system']).', '.getInfo($con, "subsys_name", "sub_system", "sub_id", $row['sub_system']); ?></small>
 							</td>
-							<td width="10%">
+							<td width="5%" align="right">
 								<small>Date:</small>
 							</td>
 							<td class="undline-tab" width="40%">
@@ -140,13 +140,13 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="marg-under" width="10%">
-								<small></small>
+							<td width="15%">
+								<small>Equipment Type/Model:</small>
 							</td>
 							<td class="undline-tab marg-under" width="40%">
 								<small></small>
 							</td>
-							<td class="marg-under" width="10%">
+							<td class="marg-under" width="5%" align="right">
 								<small>WO#:</small>
 							</td>
 							<td class="undline-tab marg-under" width="40%">
@@ -201,6 +201,14 @@
 											<small>Civil & Special Projects</small>
 										</td>
 									</tr>
+									<tr>
+										<td width="10%" style="border:1px solid black;">
+											<small></small>
+										</td>
+										<td width="90%">
+											<small>ECMG</small>
+										</td>
+									</tr>
 								</table>
 							</td>
 							<td class="paded-top-10"  width="10%">
@@ -248,6 +256,14 @@
 											<small>Civil & Special Projects</small>
 										</td>
 									</tr>
+									<tr>
+										<td width="10%" style="border:1px solid black;">
+											<small></small>
+										</td>
+										<td width="90%">
+											<small>ECMG</small>
+										</td>
+									</tr>
 								</table>
 							</td>
 						</tr>
@@ -257,11 +273,11 @@
 							<td colspan="4" class="paded-top-10">
 								<table width="100%" class="table table-bordered  table-condensed">
 									<tr>
-										<td width="10%"><center><small><strong>Item#</strong></small></center></></td>
-										<td width="50%"><center><small><strong>Description</strong></small></center></></td>
-										<td width="15%"><center><small><strong>Date Started</strong></small></center></></td>
-										<td width="15%"><center><small><strong>Date Finished</strong></small></center></></td>
-										<td width="10%"><center><small><strong>Remarks</strong></small></center></></td>
+										<td width="10%"><center><small><strong>Item#</strong></small></center></td>
+										<td width="50%"><center><small><strong>Description</strong></small></center></td>
+										<td width="15%"><center><small><strong>Date/Time Performed</strong></small></center></td>
+										<td width="15%"><center><small><strong>Date/Time Finished</strong></small></center></td>
+										<td width="10%"><center><small><strong>Remarks</strong></small></center></td>
 									</tr>
 									<tr>
 										<?php 
@@ -350,7 +366,7 @@
 										<td class="undline-tab"><small></small></td>
 									</tr>									
 								</table>
-								<table width="100%">
+								<!-- <table width="100%">
 									<tr>
 										<td width="15%"><small>Date:</small></td>
 										<td width="20%" class="undline-tab"><small></small></td>
@@ -361,40 +377,76 @@
 										<td width="20%" class="undline-tab"><small></small></td>
 										<td width="65%" ><small></small></td>
 									</tr>
-								</table>
+								</table> -->
 							</td>
 						</tr>
-
+						<tr>
+							<td><br></td>
+						</tr>
 						<!--6th row fill out-->
 						<tr>
 							<td colspan="4" class="paded-top-20">
 								<table width="100%">
 									<tr>
-										<td width="12%" align="right"><small>Prepared by:</small></td>
-										<td width="22%" class="undline-tab"><small></small></td>
-										<td width="11%" align="right"><small>Checked by:</small></td>
-										<td width="22%" class="undline-tab"><small></small></td>
-										<td width="11%" align="right"><small>Noted by:</small></td>
-										<td width="22%" class="undline-tab"><small></small></td>
+										<td width="2%"><small></small></td>
+										<td width="30%"><small>Prepared by:</small></td>
+										<td width="2%"><small></small></td>
+										<td width="30%"><small>Checked by:</small></td>
+										<td width="2%"><small></small></td>
+										<td width="30%"><small>Noted by:</small></td>
 									</tr>
 									<tr>
-										<td width="12%"><small></small></td>
-										<td width="22%"><center><small>Department Supervisor</small></center></td>
-										<td width="11%"><small></small></td>
-										<td width="22%"><center><small>Planning Department</small></center></td>
-										<td width="11%"><small></small></td>
-										<td width="22%"><center><small>Safety Officer</small></center></td>
+										<td></td>
+										<td class="undline-tab"></td>
+										<td align="right"></td>
+										<td class="undline-tab"></td>
+										<td align="right"></td>
+										<td class="undline-tab"></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><center><small>Department Supervisor</small></center></td>
+										<td></td>
+										<td><center><small>Planning Department</small></center></td>
+										<td></td>
+										<td><center><small>Safety Officer</small></center></td>
 									</tr>
 								</table>
 								<div style="margin-top:30px"></div>
 								<table width="100%">
+									<tr>
+										<td width="2%"></td>
+										<td width="30%"><small>Received by:</small></td>
+										<td width="2%"></td>
+										<td width="30%"><small>Approved by:</small></td>
+										<td width="2%"></td>
+										<td width="30%"><small>Recommending Approval:</small></td>
+									</tr>
+									<tr>
+										<td align="right"><small></small></td>
+										<td class="undline-tab"></td>
+										<td align="right"><small></small></td>
+										<td class="undline-tab"></td>
+										<td align="right"><small></small></td>
+										<td class="undline-tab"></td>
+									</tr>
+									<tr>
+										<td align="right"></td>
+										<td class="undline-tab"><small>Date:</small></td>
+										<td></td>
+										<td><center><small>Plant Superintendent</small></center></td>
+										<td></td>
+										<td><center><small>Technical Director</small></center></td>
+									</tr>
+								</table>
+								<!-- <table width="100%">
 									<tr>
 										
 										<td width="15%" align="right"><small>Approved by:</small></td>
 										<td width="30%" class="undline-tab"></td>
 										<td width="25%" align="right"><small>Recommending Approval:</small></td>
 										<td width="25%" class="undline-tab"></td>
-										<td width="5%"><small></small></td>
+										<td width="5%"></td>
 									</tr>
 									<tr>
 										
@@ -404,7 +456,7 @@
 										<td width="25%"><center><small>Technical Director</small></center></td>
 										<td width="5%"><small></small></td>
 									</tr>
-								</table>
+								</table> -->
 							</td>
 						</tr>
 
