@@ -356,7 +356,155 @@ $userid= $_SESSION['userid'];
                 <?php 
                     while($row4 = mysqli_fetch_array($sql5)) {
                 ?>
-                <div class="shadow latest1" >
+                <div class="shadow latest1">
+                    <table width="100%" class="table-bosrdered"  style="text-align: left;">
+                        <?php if ($row['status'] == 'Done') { ?>
+                            <tr>                        
+                                <td width="15%">
+                                   <label style="font-size:15px">Status:<label class="label label-success" style="font-size:15px;font-weight:900!important;"><?php echo $row4['status'] ?></label></label>
+                                </td>
+                                <td width="35%">
+                                </td>
+                                <td width='15%'></td>
+                                <td width="35%"></td>
+                            </tr>
+                            <tr> 
+                                <td width="13%">
+                                   <label style="font-size:15px">Done By:</label>  
+                                </td>
+                                <td width="35%">
+                                    <label style="font-size:15px;font-weight:900!important"><?php echo getInfo($con, "fullname", "users", "user_id", $row4['finished_by']); ?></label>
+                                </td>                         
+                                <td width="13%">
+                                   <label style="font-size:15px">Date/Time Finished:</label>  
+                                </td>
+                                <td width="35%">
+                                    <label style="font-size:15px;font-weight:900!important"><?php echo $row4['date_finished'].' '.$row4['time_finished'] ?></label>
+                                </td>         
+                            </tr>
+                            <tr>
+                                <td colspan="4"><hr class="hr"></td>
+                            </tr>
+                        <?php } else { ?>
+                            <tr>
+                                <td width='15%'><label style="font-size:15px">Status:<label class="label label-warning" style="font-size:15px;font-weight:900!important;color:black;"><?php echo $row4['status'] ?></label></label>
+                                </td>
+                                <td width="35%"></td>
+                                <td width='15%'></td>
+                                <td width="35%"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"><hr class="hr"></td>
+                            </tr>
+                        <?php } ?>
+                        <tr >
+                            <td><label style="font-size:15px">Date Requested:</label></td>
+                            <td><label style="font-size:15px;font-weight:900!important"><?php echo $row4['date_requested']?></label></td>
+                            <td><label style="font-size:15px">Date/Time Performed:</label></td>
+                            <td><label style="font-size:15px;font-weight:900!important"><?php echo $row4['date_performed'].' '.$row4['time_performed']?></label></td>
+                        </tr>
+                        <tr>
+                            <td><label style="font-size:15px">Performed By:</label></td>
+                            <td><label style="font-size:15px;font-weight:900!important"><?php echo $row4['performed_by'] ?></label></td>
+                            <td><label style="font-size:15px"></label> </td>
+                            <td><label style="font-size:15px;font-weight:900!important"></label></td>
+                        </tr>
+                        <tr>
+                            <td><label style="font-size:15px">Equipment Type/Model:</label></td>
+                            <td><label style="font-size:15px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row4['equip_type_model']); ?></label></td>
+                            <td><label style="font-size:15px">Logged by/Date&Time:</label> </td>
+                            <td><label style="font-size:15px;font-weight:900!important"><?php echo getInfo($con, "fullname", "users", "user_id", $row4['logged_by']) . " / " . $row4['logged_date']; ?> </label></td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: text-top;"><label style="font-size:15px">Problem/Findings:</label></td>
+                            <td><label style="font-size:15px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row4['prob_find']); ?></label></td>
+                            <td style="vertical-align: text-top;"><label style="font-size:15px">Work Description:</label></td>
+                            <td><label style="font-size:15px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row4['work_desc']); ?></label></td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: text-top;"><label style="font-size:15px">Action Taken:</label></td>
+                            <td><label style="font-size:15px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row4['act_taken']); ?></label></td>
+                            <td style="vertical-align: text-top;"><label style="font-size:15px">Parts Replaced:</label></td>
+                            <td><label style="font-size:15px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row4['parts_replaced']); ?></label></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><hr class="hr"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" ><label style="font-size:15px">Notes:</label></td>
+                            <td colspan="2"><label style="font-size:15px">Attachments:</label></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"  style="padding-top:0px!important">
+                                <label style="font-size:15px;font-weight:900!important"><?php echo str_replace("-","<br>-",$row4['notes']); ?></label>
+                            </td> 
+                            <td colspan="2">
+                                <?php 
+                                    $c=1;
+                                    $sql = mysqli_query($con,"SELECT * FROM attachment_logs WHERE log_id = '$id'");
+                                    while ($row1 = mysqli_fetch_array($sql)){    
+                                    $cert=explode(".",$row1['attach_file']);
+                                    $attach = $cert[1];
+                                    if($attach=='png' || $attach=='jpg' || $attach == 'jpeg' || $attach == 'PNG' || $attach == 'JPG' || $attach == 'JPEG'){                           
+                                ?>
+                                <div class="column" style="float:left" >                                
+                                    <img id="hase" class = "thumbnail sd"  src="
+                                        <?php 
+                                            if (empty($row1['attach_file'])){
+                                                echo "uploads/default.jpg";
+                                                }
+                                            else{
+                                                echo 'uploads/'. $row1['attach_file']; 
+                                            }
+                                        ?>" width="100px" height="100px" onclick="openModal();currentSlide(<?php echo $c;?>)" class="hover-shadow cursor" alt="<?php echo $row1['attach_file']?>" >
+                                      
+                                      <h5 class="sas " style="color:white"><?php echo $row1['attach_name']?></h5>
+                                </div>  
+                                <?php } else { ?>
+                                    <div class="column" >  
+                                        <a href='uploads/<?php echo $row1['attach_file']; ?>' target='_blank'><img class=" hover-shadow cursor  thumbnail sd" src='uploads/files.png' width="230" height="230">
+                                        <h5 class="sas" style="color:#0087ff" ><?php echo $row1['attach_file']; ?></h5></a> 
+                                    </div>
+                                <?php } $c++; } ?>
+                                <div id="mode" class="modal" >
+                                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                                    <a class="next" onclick="plusSlides(1)">&#10095;</a>                                     
+                                    <div onclick="closeModal()">
+                                        <span class="close cursor" onclick="closeModal()">&times;</span>
+                                        <div class="modal-content">                                          
+                                            <?php
+                                                $a = 1;
+                                                $sql3 = mysqli_query($con,"SELECT * FROM attachment_logs WHERE log_id = '$id'");
+                                                $b = mysqli_num_rows($sql3);
+                                                while ($row2 = mysqli_fetch_array($sql3)){ 
+                                                $crt=explode(".",$row2['attach_file']);
+                                                $attach1 = $crt[1];
+                                            ?>
+                                            <div class="mySlides">
+                                                <div class="numbertext" ><?php echo $a.'/'.$b ?>&nbsp-&nbsp<?php echo $row2['attach_name'];?></div>
+                                                    <img src="<?php 
+                                                        if (empty($row2['attach_file'])){
+                                                            echo "uploads/default.jpeg";
+                                                        } else{
+                                                            if($attach1 == 'jpg' || $attach1 == 'png' || $attach1 == 'jpeg'  || $attach1 == 'PNG' || $attach1 == 'PNG' || $attach1 == 'JPG' || $attach1 == 'JPEG'){
+                                                                echo 'uploads/'. $row2['attach_file']; 
+                                                            } else {
+                                                                echo "uploads/files.png";
+                                                            }
+                                                        }
+                                                    ?>" style="width:100%">
+                                                </div>
+                                                <?php $a++; }?>                                        
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+                <!-- <div class="shadow latest1" >
                     <table width="100%" class="" style="text-align: left;">
                         <tr>
                         
@@ -509,7 +657,7 @@ $userid= $_SESSION['userid'];
                             </td>
                         </tr> 
                     </table>
-                </div>
+                </div> -->
                 <?php $count++; } } ?>
             <input type='hidden' name='count' id='count' value='<?php echo $count; ?>'>
 
