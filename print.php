@@ -268,7 +268,7 @@
 							                while($row1 = mysqli_fetch_array($sql1)){
 							            ?>
 											<td><small><?php echo $count;?></small></td>
-											<td><small><?php echo $row1['prob_find'];?></small></td>
+											<td><small><?php echo $row1['notes'];?></small></td>
 											<td><small><?php echo $row1['date_performed'];?></small></td>
 											<td><small><?php echo $row1['date_finish'];?></small></td>
 											<td><small></small></td>
