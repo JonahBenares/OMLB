@@ -496,7 +496,7 @@ $userid= $_SESSION['userid'];
                         <tr>                        
                             <td>
                                 <label style="font-size:12px">Date Requested:</label> 
-                                <label style="font-size:12px;font-weight:900!important"><?php echo $row['date_requested']?></label>
+                                <label style="font-size:12px;font-weight:900!important"><?php echo $row4['date_requested']?></label>
                             </td>                                      
                         </tr>
                         <tr>
