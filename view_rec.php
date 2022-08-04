@@ -178,10 +178,12 @@ $userid= $_SESSION['userid'];
                             </tr>
                             <tr> 
                                 <td width="13%">
-                                   <label style="font-size:15px">Done By:</label>  
+                                   <!-- <label style="font-size:15px">Done By:</label> -->
+                                   <label style="font-size:15px"></label>  
                                 </td>
                                 <td width="35%">
-                                    <label style="font-size:15px;font-weight:900!important"><?php echo getInfo($con, "fullname", "users", "user_id", $row['finished_by']); ?></label>
+                                    <!-- <label style="font-size:15px;font-weight:900!important"><?php echo getInfo($con, "fullname", "users", "user_id", $row['finished_by']); ?></label> -->
+                                    <label style="font-size:15px;font-weight:900!important"></label>
                                 </td>                         
                                 <td width="13%">
                                    <label style="font-size:15px">Date/Time Finished:</label>  
@@ -370,10 +372,12 @@ $userid= $_SESSION['userid'];
                             </tr>
                             <tr> 
                                 <td width="13%">
-                                   <label style="font-size:15px">Done By:</label>  
+                                   <!-- <label style="font-size:15px">Done By:</label> -->  
+                                   <label style="font-size:15px"></label>  
                                 </td>
                                 <td width="35%">
-                                    <label style="font-size:15px;font-weight:900!important"><?php echo getInfo($con, "fullname", "users", "user_id", $row4['finished_by']); ?></label>
+                                    <!-- <label style="font-size:15px;font-weight:900!important"><?php echo getInfo($con, "fullname", "users", "user_id", $row4['finished_by']); ?></label> -->
+                                    <label style="font-size:15px;font-weight:900!important"></label>
                                 </td>                         
                                 <td width="13%">
                                    <label style="font-size:15px">Date/Time Finished:</label>  
@@ -440,61 +444,60 @@ $userid= $_SESSION['userid'];
                             </td> 
                             <td colspan="2">
                                 <?php 
-                                    $c=1;
-                                    $sql = mysqli_query($con,"SELECT * FROM attachment_logs WHERE log_id = '$id'");
-                                    while ($row1 = mysqli_fetch_array($sql)){    
-                                    $cert=explode(".",$row1['attach_file']);
-                                    $attach = $cert[1];
-                                    if($attach=='png' || $attach=='jpg' || $attach == 'jpeg' || $attach == 'PNG' || $attach == 'JPG' || $attach == 'JPEG'){                           
+                                    $f=1;
+                                    $sql6 = mysqli_query($con,"SELECT * FROM update_attachment WHERE update_id = '$row4[update_id]'");
+                                    while ($row8 = mysqli_fetch_array($sql6)){    
+                                    $cert1=explode(".",$row8['attach_file']);
+                                    $attach2 = $cert1[1];
+                                    if($attach2=='png' || $attach2=='jpg' || $attach2 == 'jpeg' || $attach2 == 'PNG' || $attach2 == 'JPG' || $attach2 == 'JPEG'){                           
                                 ?>
-                                <div class="column" style="float:left" >                                
+                                <div class="column" style="float:left;" >                                
                                     <img id="hase" class = "thumbnail sd"  src="
                                         <?php 
-                                            if (empty($row1['attach_file'])){
+                                            if (empty($row8['attach_file'])){
                                                 echo "uploads/default.jpg";
                                                 }
                                             else{
-                                                echo 'uploads/'. $row1['attach_file']; 
+                                                echo 'uploads/'. $row8['attach_file']; 
                                             }
-                                        ?>" width="100px" height="100px" onclick="openModal();currentSlide(<?php echo $c;?>)" class="hover-shadow cursor" alt="<?php echo $row1['attach_file']?>" >
-                                      
-                                      <h5 class="sas " style="color:white"><?php echo $row1['attach_name']?></h5>
-                                </div>  
+                                        ?>" width="100px" height="100px" onclick="openModal<?php echo $count; ?>();currentSlide<?php echo $count; ?>(<?php echo $f;?>)" class="hover-shadow cursor" alt="<?php echo $row8['attach_file']?>" >
+                                      <h5 class="sas" style="color:white"><?php echo $row8['attach_name']?></h5>
+                                </div> 
                                 <?php } else { ?>
                                     <div class="column" >  
-                                        <a href='uploads/<?php echo $row1['attach_file']; ?>' target='_blank'><img class=" hover-shadow cursor  thumbnail sd" src='uploads/files.png' width="230" height="230">
-                                        <h5 class="sas" style="color:#0087ff" ><?php echo $row1['attach_file']; ?></h5></a> 
-                                    </div>
-                                <?php } $c++; } ?>
-                                <div id="mode" class="modal" >
-                                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                                    <a class="next" onclick="plusSlides(1)">&#10095;</a>                                     
-                                    <div onclick="closeModal()">
-                                        <span class="close cursor" onclick="closeModal()">&times;</span>
+                                            <a href='uploads/<?php echo $row8['attach_file']; ?>' target='_blank'><img class=" hover-shadow cursor  thumbnail sd" src='uploads/files.png' width="230" height="230">
+                                            <h5 class="sas" style="color:#0087ff" ><?php echo $row8['attach_file']; ?></h5></a> 
+                                        </div>
+                                <?php } $f++; } ?>
+                                <div id="mode<?php echo $count; ?>" class="modal" >
+                                    <a class="prev" onclick="plusSlides<?php echo $count; ?>(-1)">&#10094;</a>
+                                    <a class="next" onclick="plusSlides<?php echo $count; ?>(1)">&#10095;</a>
+                                    <div onclick="closeModal<?php echo $count; ?>()">
+                                        <span class="close cursor" onclick="closeModal<?php echo $count; ?>()">&times;</span>
                                         <div class="modal-content">                                          
                                             <?php
-                                                $a = 1;
-                                                $sql3 = mysqli_query($con,"SELECT * FROM attachment_logs WHERE log_id = '$id'");
-                                                $b = mysqli_num_rows($sql3);
-                                                while ($row2 = mysqli_fetch_array($sql3)){ 
-                                                $crt=explode(".",$row2['attach_file']);
-                                                $attach1 = $crt[1];
+                                                $g = 1;
+                                                $sql7 =  mysqli_query($con,"SELECT * FROM update_attachment WHERE update_id = '$row4[update_id]'");
+                                                $h = mysqli_num_rows($sql7);
+                                                while ($row7 = mysqli_fetch_array($sql7)){ 
+                                                $crt1=explode(".",$row7['attach_file']);
+                                                $attach4 = $crt1[1];
                                             ?>
-                                            <div class="mySlides">
-                                                <div class="numbertext" ><?php echo $a.'/'.$b ?>&nbsp-&nbsp<?php echo $row2['attach_name'];?></div>
+                                            <div class="mySlides<?php echo $count; ?>">
+                                                <div class="numbertext"><?php echo $g.'/'.$h ?>&nbsp-&nbsp<?php echo $row7['attach_name'];?></div>
                                                     <img src="<?php 
-                                                        if (empty($row2['attach_file'])){
+                                                        if (empty($row7['attach_file'])){
                                                             echo "uploads/default.jpeg";
                                                         } else{
-                                                            if($attach1 == 'jpg' || $attach1 == 'png' || $attach1 == 'jpeg'  || $attach1 == 'PNG' || $attach1 == 'PNG' || $attach1 == 'JPG' || $attach1 == 'JPEG'){
-                                                                echo 'uploads/'. $row2['attach_file']; 
+                                                            if($attach4 == 'jpg' || $attach4 == 'png' || $attach4 == 'jpeg'  || $attach4 == 'PNG' || $attach4 == 'PNG' || $attach4 == 'JPG' || $attach4 == 'JPEG'){
+                                                                echo 'uploads/'. $row7['attach_file']; 
                                                             } else {
                                                                 echo "uploads/files.png";
                                                             }
                                                         }
                                                     ?>" style="width:100%">
                                                 </div>
-                                                <?php $a++; }?>                                        
+                                                <?php $g++; }?>                             
                                             </div>
                                         </div>
                                     </div>
