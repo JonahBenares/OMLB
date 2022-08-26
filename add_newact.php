@@ -160,6 +160,23 @@
             frm.append('hour_finished', hour_finished);
             var minutes_finished =document.getElementById('minutes_finished').value;
             frm.append('minutes_finished', minutes_finished);
+
+            if(date_performed==''){
+                $("#date_performed").focus();
+                $("#date_msg").show();
+                $("#date_msg").html("Date performed field must not be empty.");
+            } else if(hour==''){
+                $("#hour").focus();
+                $("#date_msg").hide();
+                $("#hour_msg").show();
+                $("#hour_msg").html("Hour field must not be empty.");
+             } else if(minutes==''){
+                $("#minutes").focus();
+                $("#hour_msg").hide();
+                $("#minutes_msg").show();
+                $("#minutes_msg").html("Minutes field must not be empty.");
+            }else {
+                $("#minutes_msg").hide();
             $.ajax({
                 type: 'POST',
                 url: "tmp_insert.php",
@@ -344,6 +361,7 @@
                                     <th width="50%">Date Performed: </th>
                                     <td colspan="4">
                                         <input type = "date" id = "date_performed" name = "date_performed" class = "form-control" required style='width:450px' autocomplete="off">
+                                        <div id='date_msg' class='err_msg'></div>
                                     </td>
                                     <?php }?>
                                 </tr>
@@ -360,11 +378,13 @@
                                     <th>Time Performed: </th>
                                     <td>
                                         <input type = "text" id = "hour" onkeypress="return isNumberKey(event)" maxlength="2" name = "hour" class = "form-control" placeholder="Hour" required autocomplete="off" style="margin:0px">
+                                        <div id='hour_msg' class='err_msg'></div>
                                     </td>
                                     <?php } else { ?>
                                     <th>Time Performed: </th>
                                     <td>
                                         <input type = "text" id = "hour" onkeypress="return isNumberKey(event)" maxlength="2" name = "hour" class = "form-control" placeholder="Hour" required autocomplete="off" style="margin:0px">
+                                        <div id='hour_msg' class='err_msg'></div>
                                     </td>
                                     <?php } ?>
                                     <td > : </td>
@@ -375,10 +395,12 @@
                                     <?php } else if(empty($row['time_performed'])) { ?>
                                     <td> 
                                         <input type = "text" id = "minutes" onkeypress="return isNumberKey(event)" maxlength="2" name = "minutes" class = "form-control" placeholder="Minutes" required style="margin:0px">
+                                        <div id='minutes_msg' class='err_msg'></div>
                                     </td>
                                     <?php } else { ?>
                                     <td> 
                                         <input type = "text" id = "minutes" onkeypress="return isNumberKey(event)" maxlength="2" name = "minutes" class = "form-control" placeholder="Minutes" required style="margin:0px">
+                                        <div id='minutes_msg' class='err_msg'></div>
                                     </td> 
                                     <?php } ?>
                                 </tr>
