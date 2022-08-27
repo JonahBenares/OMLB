@@ -41,11 +41,11 @@
         font-size:11px;
     }
 
-    .err_msg{
+    /*.err_msg{
     color:red;
     font-size: 12px;
     font-style:italic;
-    }
+    }*/
 </style>
 <script>
     function showFileSize() {
@@ -167,11 +167,11 @@
             var minutes_finished =document.getElementById('minutes_finished').value;
             frm.append('minutes_finished', minutes_finished);
 
-            if(date_performed==''){
+            /*if(date_performed==''){
                 $("#date_performed").focus();
                 $("#date_msg").show();
                 $("#date_msg").html("Date performed field must not be empty.");
-/*            } else if(hour==''){
+            } else if(hour==''){
                 $("#hour").focus();
                 $("#date_msg").hide();
                 $("#hour_msg").show();
@@ -180,11 +180,11 @@
                 $("#minutes").focus();
                 $("#hour_msg").hide();
                 $("#minutes_msg").show();
-                $("#minutes_msg").html("Minutes field must not be empty.");*/
+                $("#minutes_msg").html("Minutes field must not be empty.");
             }else {
                 $("#date_msg").hide();
-                // $("#hour_msg").hide();
-                // $("#minutes_msg").hide();
+                $("#hour_msg").hide();
+                $("#minutes_msg").hide();*/
             $.ajax({
                 type: 'POST',
                 url: "tmp_insert.php",
@@ -370,7 +370,7 @@
                                     <th width="50%">Date Performed: </th>
                                     <td colspan="4">
                                         <input type = "date" id = "date_performed" name = "date_performed" class = "form-control" required style='width:450px' autocomplete="off">
-                                        <div id='date_msg' class='err_msg'></div>
+                                        <!-- <div id='date_msg' class='err_msg'></div> -->
                                     </td>
                                     <?php }?>
                                 </tr>
