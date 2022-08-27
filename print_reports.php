@@ -49,47 +49,47 @@ if($q == 'AND'){
 
 
 require_once 'js/phpexcel/Classes/PHPExcel/IOFactory.php';
-$exportfilename="export//logbook.xlsx";
+$exportfilename="export//allreports.xlsx";
 $objPHPExcel = new PHPExcel();
 $objPHPExcel->setActiveSheetIndex(0)->setCellValue('A1', "LOGBOOK SYSTEM");
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A2', "Unit");
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B2', "Main Category");
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C2', "Sub System");
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D2', "Date/Time Performed");
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue('E2', "Date Done");
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue('F2', "Done By");
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue('G2', "Due Date");
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue('H2', "Notes");
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue('I2', "Performed By");
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue('J2', "Logged By");
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue('K2', "Logged Date");
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue('L2', "Status");
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A2', "Date Performed");
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C2', "Time Performed");
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D2', "Date Finished");
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue('F2', "Time Finished");
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue('G2', "Unit");
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue('H2', "Sub Category");
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue('J2', "Equipment Type/Model");
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue('M2', "Problem/Findings");
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue('P2', "Action Taken");
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue('S2', "Parts Replaced");
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue('V2', "Performed by");
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue('Y2', "Status");
 
 $num=3;
 $q = $con->query($sql);
 while($fetch = $q->fetch_array()){
-	$datetime = $fetch['date_performed'] . " " . $fetch['time_performed'];
+	//$datetime = $fetch['date_performed'] . " " . $fetch['time_performed'];
 	$unit=getInfo($con, 'unit_name', 'unit', 'unit_id',  $fetch['unit']);
-	$main=getInfo($con, 'system_name', 'main_system', 'main_id',  $fetch['main_system']);
+	// $main=getInfo($con, 'system_name', 'main_system', 'main_id',  $fetch['main_system']);
 	$sub=getInfo($con, 'subsys_name', 'sub_system', 'sub_id',  $fetch['sub_system']);
-	$loggedby=getInfo($con, 'fullname', 'users', 'user_id',  $fetch['logged_by']);
-	$finishby = getInfo($con, "fullname", "users", "user_id", $fetch['finished_by']);
+	// $loggedby=getInfo($con, 'fullname', 'users', 'user_id',  $fetch['logged_by']);
+	// $finishby = getInfo($con, "fullname", "users", "user_id", $fetch['finished_by']);
 	$status = $fetch['status'];
-	$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A'.$num, $unit);
-	$objPHPExcel->setActiveSheetIndex(0)->setCellValue('B'.$num, $main);
-	$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C'.$num, $sub);
-	$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D'.$num, $datetime);
-	$objPHPExcel->setActiveSheetIndex(0)->setCellValue('E'.$num, $fetch['date_finish']);
-	$objPHPExcel->setActiveSheetIndex(0)->setCellValue('F'.$num, $finishby);
-	$objPHPExcel->setActiveSheetIndex(0)->setCellValue('G'.$num, $fetch['due_date']);
-	$objPHPExcel->setActiveSheetIndex(0)->setCellValue('H'.$num, $fetch['notes']);
-	$objPHPExcel->setActiveSheetIndex(0)->setCellValue('I'.$num, $fetch['performed_by']);
-	$objPHPExcel->setActiveSheetIndex(0)->setCellValue('J'.$num, $loggedby);
-	$objPHPExcel->setActiveSheetIndex(0)->setCellValue('K'.$num, $fetch['logged_date']);
-	$objPHPExcel->setActiveSheetIndex(0)->setCellValue('L'.$num, $fetch['status']);
+	$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A'.$num, $fetch['date_performed']);
+	$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C'.$num, $fetch['time_performed']);
+	$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D'.$num, $fetch['date_finished']);
+	$objPHPExcel->setActiveSheetIndex(0)->setCellValue('F'.$num, $fetch['time_finished']);
+	$objPHPExcel->setActiveSheetIndex(0)->setCellValue('G'.$num, $unit);
+	$objPHPExcel->setActiveSheetIndex(0)->setCellValue('H'.$num, $sub);
+	$objPHPExcel->setActiveSheetIndex(0)->setCellValue('J'.$num, $fetch['equip_type_model']);
+	$objPHPExcel->setActiveSheetIndex(0)->setCellValue('M'.$num, $fetch['prob_find']);
+	$objPHPExcel->setActiveSheetIndex(0)->setCellValue('P'.$num, $fetch['act_taken']);
+	$objPHPExcel->setActiveSheetIndex(0)->setCellValue('S'.$num, $fetch['parts_replaced']);
+	$objPHPExcel->setActiveSheetIndex(0)->setCellValue('V'.$num, $fetch['performed_by']);
+	$objPHPExcel->setActiveSheetIndex(0)->setCellValue('Y'.$num, $fetch['status']);
 	
 
-	$updates = $con->query("SELECT * FROM update_logs WHERE log_id = '$fetch[log_id]'");
+	/*$updates = $con->query("SELECT * FROM update_logs WHERE log_id = '$fetch[log_id]'");
 	$update_rows = $updates->num_rows;
 	if($update_rows > 0){
 
@@ -108,12 +108,29 @@ while($fetch = $q->fetch_array()){
 			$objPHPExcel->setActiveSheetIndex(0)->setCellValue('K'.$num, $fetchup['logged_date']);
 			$objPHPExcel->setActiveSheetIndex(0)->setCellValue('L'.$num, $fetchup['status']);
 		}
-	}
+	}*/
+
+	$objPHPExcel->getActiveSheet()->mergeCells('A'.$num.":B".$num);
+	$objPHPExcel->getActiveSheet()->mergeCells('D'.$num.":E".$num);
+	$objPHPExcel->getActiveSheet()->mergeCells('H'.$num.":I".$num);
+	$objPHPExcel->getActiveSheet()->mergeCells('J'.$num.":L".$num);
+	$objPHPExcel->getActiveSheet()->mergeCells('M'.$num.":O".$num);
+	$objPHPExcel->getActiveSheet()->mergeCells('P'.$num.":R".$num);
+	$objPHPExcel->getActiveSheet()->mergeCells('S'.$num.":U".$num);
+	$objPHPExcel->getActiveSheet()->mergeCells('V'.$num.":X".$num);
 	$num++;
 }
 $objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->setBold(true);
-$objPHPExcel->getActiveSheet()->getStyle('A2:L2')->getFont()->setBold(true);
-$objPHPExcel->getActiveSheet()->mergeCells('A1:L1');
+$objPHPExcel->getActiveSheet()->getStyle('A2:Y2')->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->mergeCells('A1:Y1');
+$objPHPExcel->getActiveSheet()->mergeCells('A2:B2');
+$objPHPExcel->getActiveSheet()->mergeCells('D2:E2');
+$objPHPExcel->getActiveSheet()->mergeCells('H2:I2');
+$objPHPExcel->getActiveSheet()->mergeCells('J2:L2');
+$objPHPExcel->getActiveSheet()->mergeCells('M2:O2');
+$objPHPExcel->getActiveSheet()->mergeCells('P2:R2');
+$objPHPExcel->getActiveSheet()->mergeCells('S2:U2');
+$objPHPExcel->getActiveSheet()->mergeCells('V2:X2');
 
 
 
@@ -125,7 +142,7 @@ unset($objPHPExcel);
 unset($objWriter);   
 ob_end_clean();
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment; filename="logbook.xlsx"');
+header('Content-Disposition: attachment; filename="allreports.xlsx"');
 readfile($exportfilename);
 
 ?>
