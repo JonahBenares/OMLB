@@ -110,6 +110,12 @@ $userid=$_SESSION['userid'];
 		      					View/Update Record
 		      				</center>
 	      				</a>
+	      				<a href="all_reports.php" class="btn btn-dark btn-md" id="all_reports">
+							<center>
+		      					<span class="fa fa-book" aria-hidden="true" style="font-size:50px"></span><br>
+		      					All Reports
+		      				</center>
+	      				</a>
 	      				
 	      			
       				</center>

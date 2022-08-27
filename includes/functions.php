@@ -184,6 +184,89 @@ function filtersApplied($con, $post){
 	 return $fil;
 }
 
+function filteredSQLReports($con, $post){
+
+	if(!empty($post)){
+		foreach($post as $var=>$value)
+			$$var = mysqli_real_escape_string($con,$value);
+
+		$logid=array();
+		$sql = "SELECT log_id FROM log_head WHERE ";
+
+		 if(!empty($date_from)){
+		 	if(!empty($date_to)){
+		 		$sql.=" date_performed BETWEEN '$date_from' AND '$date_to' AND";
+				
+		 	} else {
+		 		$sql.=" date_performed BETWEEN '$date_from' AND '$date_from' AND";
+		 	}
+
+		 }
+		 
+		 
+		 if(!empty($unit_name)){
+		 	$sql.=" unit = '$unit_name' AND";
+		 }
+
+		 if(!empty($subsys_name)){
+		 		$sql.=" sub_system =  '$subsys_name' AND";
+		 }
+
+		 if(!empty($status)){
+		 	$sql.=" status =  '$status' AND";
+			
+		 }
+
+		$query=substr($sql,0,-3);
+	} else {
+		$query = "SELECT log_id FROM log_head ORDER BY log_id ASC";
+	}
+	
+
+	$searchHead=$con->query($query);
+	$rows_head = $searchHead->num_rows;
+	if($rows_head != 0){
+		while($fetchHead = $searchHead->fetch_array()){
+			$logid[] = $fetchHead['log_id'];
+		}
+ 	}
+
+ 	return array_unique($logid);
+}
+
+function filterReports($con, $post){
+	
+
+	foreach($post as $var=>$value)
+		$$var = mysqli_real_escape_string($con,$value);
+
+	$filter='';
+
+	 if(!empty($date_from)){
+	 	if(!empty($date_to)){
+			$filter.='Date: ' . $date_from . ' to '. $date_to . ', ';
+		 } else {
+	 		$filter.='Date: ' . $date_from. ', ';
+	 	}
+	 }
+	 
+	 if(!empty($unit_name)){
+	 	$filter.='Unit: ' . getInfo($con, 'unit_name', 'unit', 'unit_id' ,$unit_name). ', ';
+	 }
+
+	 if(!empty($subsys_name)){
+	 		$filter.='Sub System: ' . getInfo($con, 'subsys_name', 'sub_system', 'sub_id' ,$subsys_name). ', ';
+	 }
+
+	 if(!empty($status)){
+
+	 	$filter.='Status: ' . $status. ', ';
+	 }
+
+	 $filRep = substr($filter, 0, -2);
+	 return $filRep;
+}
+
 function filterURL($con, $post){
 	
 	foreach($post as $var=>$value)
@@ -274,6 +357,43 @@ function printURL($con, $post){
 
 	 if(!empty($others)){
 	 	$url.='others=' . $others;
+	 }
+
+	 if(substr($url, 0, -1) == '&'){
+	 	$url = substr($url, 0, -1);
+	 } else {
+	 	$url = $url;
+	 }
+	 return $url;
+
+}
+
+function printURLReports($con, $post){
+	foreach($post as $var=>$value)
+		$$var = mysqli_real_escape_string($con,$value);
+
+	$url='';
+
+	 if(!empty($date_from)){
+	 	if(!empty($date_to)){
+			$url.='date_from='.$date_from.'&date_to='.$date_to.'&';
+		 } else {
+	 		$url.='date_from='.$date_from.'&';
+	 	}
+	 }
+	 
+	 
+	 
+	 if(!empty($unit_name)){
+	 	$url.='unit_name='.$unit_name.'&';
+	 }
+
+	 if(!empty($subsys_name)){
+	 	$url.='subsys_name='.$subsys_name.'&';
+	 }
+
+	 if(!empty($status)){
+	 	$url.='status='.$status.'&';
 	 }
 
 	 if(substr($url, 0, -1) == '&'){
