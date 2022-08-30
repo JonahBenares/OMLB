@@ -15,22 +15,22 @@ if(!empty($_GET)){
 		}
 	}
 
-	if(!empty($_GET['duefrom'])){
+/*	if(!empty($_GET['duefrom'])){
 		if(!empty($_GET['dueto'])){
 			$sql .= " due_date BETWEEN '$_GET[duefrom]' AND '$_GET[dueto]' AND";
 		}else{
 			$sql .= " due_date BETWEEN '$_GET[duefrom]' AND '$_GET[duefrom]' AND";
 			
 		}
-	}
+	}*/
 
 	if(!empty($_GET['unit'])){
 		$sql .= " unit =  '$_GET[unit]' AND";
 	}
-	if(!empty($_GET['system_name'])){
+/*	if(!empty($_GET['system_name'])){
 		$sql .= " main_system =  '$_GET[system_name]' AND";
 		//$url.="system_name=".$_GET['system_name'];
-	}
+	}*/
 	if(!empty($_GET['sub_system'])){
 		$sql .= " sub_system =  '$_GET[sub_system]' AND";
 	
@@ -51,21 +51,22 @@ if($q == 'AND'){
 require_once 'js/phpexcel/Classes/PHPExcel/IOFactory.php';
 $exportfilename="export//allreports.xlsx";
 $objPHPExcel = new PHPExcel();
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A1', "LOGBOOK SYSTEM");
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A2', "Date Performed");
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C2', "Time Performed");
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D2', "Date Finished");
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue('F2', "Time Finished");
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue('G2', "Unit");
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue('H2', "Sub Category");
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue('J2', "Equipment Type/Model");
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue('M2', "Problem/Findings");
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue('P2', "Action Taken");
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue('S2', "Parts Replaced");
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue('V2', "Performed by");
-$objPHPExcel->setActiveSheetIndex(0)->setCellValue('Y2', "Status");
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A1', "OMLB Summary Report");
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A2',"Period Covered: $_GET[date_from] ". to ." $_GET[date_to]");
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue('A3', "Date Performed");
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue('C3', "Time Performed");
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue('D3', "Date Finished");
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue('F3', "Time Finished");
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue('G3', "Unit");
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue('H3', "Sub Category");
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue('J3', "Equipment Type/Model");
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue('M3', "Problem/Findings");
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue('P3', "Action Taken");
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue('S3', "Parts Replaced");
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue('V3', "Performed by");
+$objPHPExcel->setActiveSheetIndex(0)->setCellValue('Y3', "Status");
 
-$num=3;
+$num=4;
 $q = $con->query($sql);
 while($fetch = $q->fetch_array()){
 	//$datetime = $fetch['date_performed'] . " " . $fetch['time_performed'];
@@ -121,16 +122,20 @@ while($fetch = $q->fetch_array()){
 	$num++;
 }
 $objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle('A2')->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle('A1:Y1')->getFont()->setBold(true);
 $objPHPExcel->getActiveSheet()->getStyle('A2:Y2')->getFont()->setBold(true);
+$objPHPExcel->getActiveSheet()->getStyle('A3:Y3')->getFont()->setBold(true);
 $objPHPExcel->getActiveSheet()->mergeCells('A1:Y1');
-$objPHPExcel->getActiveSheet()->mergeCells('A2:B2');
-$objPHPExcel->getActiveSheet()->mergeCells('D2:E2');
-$objPHPExcel->getActiveSheet()->mergeCells('H2:I2');
-$objPHPExcel->getActiveSheet()->mergeCells('J2:L2');
-$objPHPExcel->getActiveSheet()->mergeCells('M2:O2');
-$objPHPExcel->getActiveSheet()->mergeCells('P2:R2');
-$objPHPExcel->getActiveSheet()->mergeCells('S2:U2');
-$objPHPExcel->getActiveSheet()->mergeCells('V2:X2');
+$objPHPExcel->getActiveSheet()->mergeCells('A2:Y2');
+$objPHPExcel->getActiveSheet()->mergeCells('A3:B3');
+$objPHPExcel->getActiveSheet()->mergeCells('D3:E3');
+$objPHPExcel->getActiveSheet()->mergeCells('H3:I3');
+$objPHPExcel->getActiveSheet()->mergeCells('J3:L3');
+$objPHPExcel->getActiveSheet()->mergeCells('M3:O3');
+$objPHPExcel->getActiveSheet()->mergeCells('P3:R3');
+$objPHPExcel->getActiveSheet()->mergeCells('S3:U3');
+$objPHPExcel->getActiveSheet()->mergeCells('V3:X3');
 
 
 
