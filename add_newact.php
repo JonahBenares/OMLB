@@ -200,7 +200,7 @@
             });    
         }
     }
-}
+//}
 
     $(function() {
           var ctrx = document.getElementById('counter').value
